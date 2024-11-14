@@ -9,5 +9,6 @@ namespace Entidades.Interfaces
         bool Atualizar(Venda venda);
         bool Excluir(int id);
         List<Venda> ObterTodos();
+        int ObterUltimoIdInserido();
     }
 }

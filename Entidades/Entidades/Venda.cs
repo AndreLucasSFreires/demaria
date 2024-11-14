@@ -5,9 +5,10 @@ namespace Dominio.Entidades
     public class Venda
     {
         public Venda() { }
-        public Venda(int codigoCliente, Cliente cliente, DateTime dataEmissao, double valor)
+        public Venda(int id, Cliente cliente, DateTime dataEmissao, double valor)
         {
-            CodigoCliente = codigoCliente;
+            Id = id;
+            CodigoCliente = cliente.Id;
             Cliente = cliente;
             DataEmissao = dataEmissao;
             Valor = valor;

@@ -2,11 +2,7 @@
 using Dominio.Entidades;
 using Dominio.Entidades.Interfaces;
 using Entidades.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplicacao.Servicos
 {
@@ -25,8 +21,14 @@ namespace Aplicacao.Servicos
 
         public bool InserirVenda(VendaDto vendaDto)
         {
-            var venda = new Venda(vendaDto.CodigoCliente, null, vendaDto.DataEmissao, vendaDto.Valor);
-            return _vendaRepository.Inserir(venda);
+            var venda = new Venda(vendaDto.Cliente.Id, ObterCliente(vendaDto.Cliente), vendaDto.DataEmissao, vendaDto.Valor);
+            bool inserido = _vendaRepository.Inserir(venda);
+            return inserido;
+        }
+
+        public int ObterProximoIdVenda()
+        {
+            return _vendaRepository.ObterUltimoIdInserido() + 1;
         }
 
         public bool AtualizarVenda(VendaDto vendaDto)
@@ -35,7 +37,7 @@ namespace Aplicacao.Servicos
             {
                 Id = vendaDto.Id
             };
-            return _vendaRepository.Inserir(venda);
+            return _vendaRepository.Atualizar(venda);
         }
 
         public bool Excluir(int id)
@@ -59,6 +61,18 @@ namespace Aplicacao.Servicos
                 });
             }
             return vendasDto;
+        }
+
+        public Cliente ObterCliente(ClienteDto cliente)
+        {
+            return new Cliente
+            {
+                Id = cliente.Id,
+                Email = cliente.Email,
+                Endereco = cliente.Endereco,
+                Nome = cliente.Nome,
+                Telefone = cliente.Telefone
+            };
         }
 
         public ClienteDto ObterCliente(int id)

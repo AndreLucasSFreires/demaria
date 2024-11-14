@@ -13,12 +13,11 @@ namespace Infraestrutura.Repositorios
 {
     public class VendaRepository : IVendaRepository
     {
-        public string connectionString = "Server=127.0.0.1;Port=5432;Database=demaria;User Id=postgres;Password=123;";
         public const string colunas = "codcliente, dataemissao, valor";
         public const string parametros = "@codcliente, @dataemissao, @valor";
         public bool Atualizar(Venda venda)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"UPDATE Vendas SET codcliente = @codcliente, dataemissao = @dataemissao, " +
@@ -33,7 +32,7 @@ namespace Infraestrutura.Repositorios
 
         public bool Excluir(int id)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"DELETE FROM Vendas Where Id = @id", conexao);
@@ -44,20 +43,37 @@ namespace Infraestrutura.Repositorios
 
         public bool Inserir(Venda venda)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            bool inserido = false;
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
-                var comando = new NpgsqlCommand($"INSERT INTO Vendas({colunas}) VALUES({parametros})", conexao);
+                var comando = new NpgsqlCommand($"INSERT INTO Vendas(id, {colunas}) VALUES(@id, {parametros})", conexao);
+                comando.Parameters.AddWithValue("@id", venda.Id);
                 comando.Parameters.AddWithValue("@codcliente", venda.CodigoCliente);
                 comando.Parameters.AddWithValue("@dataemissao", venda.DataEmissao);
                 comando.Parameters.AddWithValue("@valor", venda.Valor);
-                return comando.ExecuteNonQuery() > 0;
+                inserido = comando.ExecuteNonQuery() > 0;
+            }
+            return inserido;
+        }
+
+        public int ObterUltimoIdInserido()
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
+            {
+                conexao.Open();
+                var comando = new NpgsqlCommand($"SELECT MAX(id) FROM Vendas", conexao);
+                var dataReader = comando.ExecuteReader();
+                int id = 0;
+                while (dataReader.Read())
+                    id = dataReader[0].ToInt();
+                return id;
             }
         }
 
         public List<Venda> ObterTodos()
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Vendas", conexao);

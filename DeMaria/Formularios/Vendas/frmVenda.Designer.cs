@@ -105,6 +105,8 @@
             this.colDgvProdutosLancamentoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDgvProdutosLancamentoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDgvProdutosLancamentoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotalDocumento = new System.Windows.Forms.Label();
+            this.txtTotalDocumento = new System.Windows.Forms.TextBox();
             this.tblLayCabecalho.SuspendLayout();
             this.tblLancamento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutosLancamento)).BeginInit();
@@ -143,6 +145,8 @@
             this.tblLayCabecalho.Controls.Add(this.labelDocumento, 9, 0);
             this.tblLayCabecalho.Controls.Add(this.lblEndereco, 5, 0);
             this.tblLayCabecalho.Controls.Add(this.txtEndereco, 5, 1);
+            this.tblLayCabecalho.Controls.Add(this.lblTotalDocumento, 9, 2);
+            this.tblLayCabecalho.Controls.Add(this.txtTotalDocumento, 9, 3);
             this.tblLayCabecalho.Location = new System.Drawing.Point(4, 13);
             this.tblLayCabecalho.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayCabecalho.Name = "tblLayCabecalho";
@@ -169,11 +173,12 @@
             this.tblLancamento.Location = new System.Drawing.Point(3, 145);
             this.tblLancamento.Name = "tblLancamento";
             this.tblLancamento.RowCount = 3;
-            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.83333F));
-            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.33871F));
+            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.86022F));
+            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.31183F));
             this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.69355F));
             this.tblLancamento.Size = new System.Drawing.Size(1219, 744);
             this.tblLancamento.TabIndex = 48;
+            this.tblLancamento.Paint += new System.Windows.Forms.PaintEventHandler(this.tblLancamento_Paint);
             // 
             // dgvProdutosLancamento
             // 
@@ -191,7 +196,7 @@
             this.colDgvProdutosLancamentoTotal});
             this.dgvProdutosLancamento.Enabled = false;
             this.dgvProdutosLancamento.EnableHeadersVisualStyles = false;
-            this.dgvProdutosLancamento.Location = new System.Drawing.Point(3, 158);
+            this.dgvProdutosLancamento.Location = new System.Drawing.Point(3, 121);
             this.dgvProdutosLancamento.MultiSelect = false;
             this.dgvProdutosLancamento.Name = "dgvProdutosLancamento";
             this.dgvProdutosLancamento.RowHeadersVisible = false;
@@ -200,7 +205,7 @@
             this.dgvProdutosLancamento.ShowCellToolTips = false;
             this.dgvProdutosLancamento.ShowEditingIcon = false;
             this.dgvProdutosLancamento.ShowRowErrors = false;
-            this.dgvProdutosLancamento.Size = new System.Drawing.Size(1213, 495);
+            this.dgvProdutosLancamento.Size = new System.Drawing.Size(1213, 532);
             this.dgvProdutosLancamento.TabIndex = 47;
             // 
             // tblLayProdutos
@@ -521,13 +526,13 @@
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tblLayCabecalho.SetColumnSpan(this.txtEmail, 7);
+            this.tblLayCabecalho.SetColumnSpan(this.txtEmail, 4);
             this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(514, 107);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(707, 28);
+            this.txtEmail.Size = new System.Drawing.Size(467, 28);
             this.txtEmail.TabIndex = 10;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
@@ -974,6 +979,28 @@
             this.colDgvProdutosLancamentoTotal.HeaderText = "Total";
             this.colDgvProdutosLancamentoTotal.Name = "colDgvProdutosLancamentoTotal";
             // 
+            // lblTotalDocumento
+            // 
+            this.lblTotalDocumento.AutoSize = true;
+            this.lblTotalDocumento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDocumento.Location = new System.Drawing.Point(988, 77);
+            this.lblTotalDocumento.Name = "lblTotalDocumento";
+            this.lblTotalDocumento.Size = new System.Drawing.Size(60, 26);
+            this.lblTotalDocumento.TabIndex = 49;
+            this.lblTotalDocumento.Text = "Total:";
+            // 
+            // txtTotalDocumento
+            // 
+            this.txtTotalDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblLayCabecalho.SetColumnSpan(this.txtTotalDocumento, 3);
+            this.txtTotalDocumento.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalDocumento.Location = new System.Drawing.Point(988, 106);
+            this.txtTotalDocumento.Name = "txtTotalDocumento";
+            this.txtTotalDocumento.Size = new System.Drawing.Size(234, 31);
+            this.txtTotalDocumento.TabIndex = 50;
+            this.txtTotalDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
+            // 
             // frmVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1073,5 +1100,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoQuantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoTotal;
+        private System.Windows.Forms.Label lblTotalDocumento;
+        private System.Windows.Forms.TextBox txtTotalDocumento;
     }
 }

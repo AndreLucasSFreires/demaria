@@ -3,12 +3,7 @@ using Aplicacao.Servicos;
 using DeMaria.Formularios.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DeMaria.Formularios.Vendas
@@ -40,7 +35,7 @@ namespace DeMaria.Formularios.Vendas
         public VendaDto IniciarNovaVenda()
         {
             itensVenda = new List<ItemVendaDto>();
-            return new VendaDto { };
+            return new VendaDto { Id= _vendaService.ObterProximoIdVenda() };
         }
 
         private int ObterIdVenda()
@@ -48,15 +43,6 @@ namespace DeMaria.Formularios.Vendas
             int id = 0;
             if (vendaSelecionada != null) id = vendaSelecionada.Id;
             return id;
-        }
-
-        private VendaDto ObterClienteDto()
-        {
-            return new VendaDto
-            {
-                Id = ObterIdVenda(),
-
-            };
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -81,10 +67,14 @@ namespace DeMaria.Formularios.Vendas
                 btnExcluir.Enabled = false;
                 estadoBotaoNovo = EstadoBotao.Salvar;
                 vendaSelecionada = IniciarNovaVenda();
+                txtDoc.Text = vendaSelecionada.Id.ToString("00000");
                 txtCodCliente.Focus();
             }
             if (botao == EnumBotoesCadastro.SalvarDoBotaoNovo)
             {
+                if (!GravarVenda())
+                    return;
+
                 btnNovo.Text = textoBotaoNovoDefault;
                 btnEditar.Text = textoBotaoEditarDefault;
                 btnNovo.Enabled = true;
@@ -124,7 +114,24 @@ namespace DeMaria.Formularios.Vendas
                 estadoBotaoEditar = EstadoBotao.Default;
                 estadoBotaoNovo = EstadoBotao.Default;
             }
+        }
 
+        private bool GravarVenda()
+        {
+            bool vendaInserida = _vendaService.InserirVenda(vendaSelecionada);
+
+            if (!vendaInserida)
+            {
+                MessageBox.Show("Venda não foi gravada, entre em contato com o suporte");
+                return false;
+            }
+
+            foreach (var item in itensVenda)
+            {
+                item.CodigoVenda = vendaSelecionada.Id;
+                _itemVendaService.InserirItemVenda(item);
+            }
+            return true;
         }
 
         private void LimparConteudoControlesCliente()
@@ -221,6 +228,7 @@ namespace DeMaria.Formularios.Vendas
                 return false;
             }
 
+            vendaSelecionada.Cliente = clienteSelecionado;
             txtCodCliente.Text = clienteSelecionado.Id.ToString().PadLeft(5, '0');
             txtNomeCliente.Text = clienteSelecionado.Nome;
             txtEndereco.Text = clienteSelecionado.Endereco;
@@ -269,15 +277,15 @@ namespace DeMaria.Formularios.Vendas
 
         private void CalcularValorTotalLancamentosProdutos()
         {
-                
+            txtTotalDocumento.Text = itensVenda.Sum(x => x.ValorTotal).ToString("N2");
         }
-        
+
         private void txtVUnit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
                 if (!LancarProdutoVenda())
-                    return; 
+                    return;
 
                 txtCodProd.Focus();
                 e.Handled = true;
@@ -286,7 +294,7 @@ namespace DeMaria.Formularios.Vendas
 
         private bool LancarProdutoVenda()
         {
-            if (produtosSelecionado.Id == 0)
+            if (produtosSelecionado == null || produtosSelecionado.Id == 0)
             {
                 MessageBox.Show("Por favor, selecione um produto para lançar na venda");
                 txtCodProd.Focus();
@@ -297,12 +305,15 @@ namespace DeMaria.Formularios.Vendas
             CalcularValorTotalLancamentosProdutos();
             LimparConteudoControlesProduto();
             CarregarGridItensProdutos();
+            produtosSelecionado = null;
             return true;
         }
 
         private void CarregarGridItensProdutos()
         {
+            dgvProdutosLancamento.DataSource = new List<ItemVendaDto> { };
             dgvProdutosLancamento.DataSource = itensVenda;
+            dgvProdutosLancamento.Refresh();
         }
 
         private ItemVendaDto ObterItemVendaDtoLancamento()
@@ -331,6 +342,11 @@ namespace DeMaria.Formularios.Vendas
                 txtVUnit.Focus();
                 e.Handled = true;
             }
+        }
+
+        private void tblLancamento_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
