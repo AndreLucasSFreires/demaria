@@ -1,4 +1,6 @@
-﻿using DeMaria.Formularios.Enums;
+﻿using Aplicacao.DTO;
+using Aplicacao.Servicos;
+using DeMaria.Formularios.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +21,31 @@ namespace DeMaria.Formularios.Vendas
         const string textoBotaoEditarDefault = "Editar";
         const string textoSalvar = "Salvar";
 
-        public frmVenda()
+        private readonly VendaService _vendaService;
+
+        VendaDto vendaSelecionada = null;
+        ClienteDto clienteSelecionado = null;
+
+        public frmVenda(VendaService vendaService)
         {
             InitializeComponent();
+            _vendaService = vendaService;
+        }
+
+        private int ObterIdVenda()
+        {
+            int id = 0;
+            if (vendaSelecionada != null) id = vendaSelecionada.Id;
+            return id;
+        }
+
+        private VendaDto ObterClienteDto()
+        {
+            return new VendaDto
+            {
+                Id = ObterIdVenda(),
+                
+            };
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -128,6 +152,34 @@ namespace DeMaria.Formularios.Vendas
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             ControlarBotoesTelaCadastro(EnumBotoesCadastro.Voltar);
+        }
+
+        private void txtCodCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                int.TryParse(txtCodCliente.Text.Trim(), out int codigoCliente);
+                if (codigoCliente > 0)
+                {
+                    DefinirCliente(codigoCliente);
+                    txtCodProd.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Digite o código/identificação do cliente que se deseja realizar a venda");
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void DefinirCliente(int codigoCliente)
+        {
+            clienteSelecionado = _vendaService.ObterCliente(codigoCliente);
+            txtCodCliente.Text = clienteSelecionado.Id.ToString().PadLeft(5, '0');
+            txtNomeCliente.Text = clienteSelecionado.Nome;
+            txtEndereco.Text = clienteSelecionado.Endereco;
+            txtEmail.Text = clienteSelecionado.Email;
+            txtTelefone.Text = clienteSelecionado.Telefone;
         }
     }
 }

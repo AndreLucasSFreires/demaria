@@ -9,6 +9,10 @@ namespace DeMaria
 {
     public partial class frmMain : Form
     {
+        ClienteRepository ClienteRepository = new ClienteRepository();
+        ProdutoRepository ProdutoRepository = new ProdutoRepository();
+        VendaRepository VendaRepository = new VendaRepository();
+
         public frmMain()
         {
             InitializeComponent();
@@ -16,23 +20,22 @@ namespace DeMaria
 
         private void btnFormularioClientes_Click(object sender, EventArgs e)
         {
-            var repositorio = new ClienteRepository();
-            var clienteService = new Aplicacao.Servicos.ClienteService(repositorio);
+            var clienteService = new Aplicacao.Servicos.ClienteService(ClienteRepository);
             var frmClientes = new frmCadastroCliente(clienteService);
             frmClientes.ShowDialog();
         }
 
         private void btnFormularioProdutos_Click(object sender, EventArgs e)
         {
-            var repositorio = new ProdutoRepository();
-            var produtoService = new Aplicacao.Servicos.ProdutoService(repositorio);
+            var produtoService = new Aplicacao.Servicos.ProdutoService(ProdutoRepository);
             var frmProdutos = new frmCadastroProdutos(produtoService);
             frmProdutos.ShowDialog();
         }
 
         private void btnFormularioVendas_Click(object sender, EventArgs e)
         {
-            frmVenda frmVenda = new frmVenda();
+            var vendaService = new Aplicacao.Servicos.VendaService(VendaRepository, ClienteRepository);
+            frmVenda frmVenda = new frmVenda(vendaService);
             frmVenda.ShowDialog();
         }
     }

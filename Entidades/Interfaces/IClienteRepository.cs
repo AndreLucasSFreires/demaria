@@ -8,5 +8,6 @@ namespace Dominio.Entidades.Interfaces
         bool Atualizar(Cliente cliente);
         bool Excluir(int id);
         List<Cliente> ObterTodos();
+        Cliente ObterCliente(int id);
     }
 }

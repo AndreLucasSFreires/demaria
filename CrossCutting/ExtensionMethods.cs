@@ -8,6 +8,11 @@ namespace CrossCutting
 {
     public static class ExtensionMethods
     {
+        public static DateTime ToDateTime(this object obj)
+        {
+            DateTime.TryParse(obj.ToString(), out var dt);
+            return dt;
+        }
         public static double ToDouble(this object obj)
         {
             double.TryParse(obj.ToString(), out double value);

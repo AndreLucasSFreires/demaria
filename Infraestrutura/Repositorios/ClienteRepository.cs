@@ -82,5 +82,20 @@ namespace Infraestrutura.Repositorios
                 });
             }
         }
+
+        public Cliente ObterCliente(int id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            {
+                conexao.Open();
+                var comando = new NpgsqlCommand($"SELECT id, {colunas} From Clientes Where Id = @id", conexao);
+                comando.Parameters.AddWithValue("@id", id);
+                var dataTable = new DataTable();
+                var dataAdapter = new NpgsqlDataAdapter(comando.CommandText, conexao);
+                dataAdapter.Fill(dataTable);
+                MapearClientes(dataTable, out var clientes);
+                return clientes[0];
+            }
+        }
     }
 }
