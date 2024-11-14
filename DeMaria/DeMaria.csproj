@@ -54,6 +54,12 @@
     <Compile Include="Formularios\Produtos\frmCadastroProdutos.Designer.cs">
       <DependentUpon>frmCadastroProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Vendas\frmVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Vendas\frmVenda.Designer.cs">
+      <DependentUpon>frmVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\Produtos\frmCadastroProdutos.resx">
       <DependentUpon>frmCadastroProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Vendas\frmVenda.resx">
+      <DependentUpon>frmVenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
