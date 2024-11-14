@@ -25,6 +25,7 @@ namespace DeMaria.Formularios.Vendas
 
         VendaDto vendaSelecionada = null;
         ClienteDto clienteSelecionado = null;
+        ProdutoDto produtosSelecionado = null;
 
         public frmVenda(VendaService vendaService)
         {
@@ -44,7 +45,7 @@ namespace DeMaria.Formularios.Vendas
             return new VendaDto
             {
                 Id = ObterIdVenda(),
-                
+
             };
         }
 
@@ -101,7 +102,8 @@ namespace DeMaria.Formularios.Vendas
             }
             if (botao == EnumBotoesCadastro.Voltar)
             {
-                LimparConteudoControles();
+                LimparConteudoControlesCliente();
+                LimparConteudoControlesProduto();
                 btnNovo.Text = textoBotaoNovoDefault;
                 btnEditar.Text = textoBotaoEditarDefault;
                 btnNovo.Enabled = true;
@@ -114,12 +116,17 @@ namespace DeMaria.Formularios.Vendas
 
         }
 
-        private void LimparConteudoControles()
+        private void LimparConteudoControlesCliente()
         {
             txtCodCliente.Clear();
             txtNomeCliente.Clear();
             txtEndereco.Clear();
             txtEmail.Clear();
+            txtTelefone.Clear();
+        }
+
+        private void LimparConteudoControlesProduto()
+        {
             txtCodProd.Clear();
             txtNomeProd.Clear();
             txtQuant.Clear();
@@ -133,6 +140,7 @@ namespace DeMaria.Formularios.Vendas
             txtNomeCliente.Enabled = habilitar;
             txtEndereco.Enabled = habilitar;
             txtEmail.Enabled = habilitar;
+            txtTelefone.Enabled = habilitar;
             tblLayProdutos.Enabled = habilitar;
             dgvProdutosLancamento.Enabled = habilitar;
         }
@@ -161,8 +169,10 @@ namespace DeMaria.Formularios.Vendas
                 int.TryParse(txtCodCliente.Text.Trim(), out int codigoCliente);
                 if (codigoCliente > 0)
                 {
-                    DefinirCliente(codigoCliente);
-                    txtCodProd.Focus();
+                    if (DefinirCliente(codigoCliente))
+                        txtCodProd.Focus();
+                    else
+                        txtCodCliente.Focus();
                 }
                 else
                 {
@@ -172,14 +182,67 @@ namespace DeMaria.Formularios.Vendas
             }
         }
 
-        private void DefinirCliente(int codigoCliente)
+        private bool DefinirProduto(int codigoProduto)
+        {
+            produtosSelecionado = _vendaService.ObterProduto(codigoProduto);
+
+            if (produtosSelecionado.Id == 0)
+            {
+                MessageBox.Show("Digite um código de produto existente");
+                LimparConteudoControlesProduto();
+                return false;
+            }
+
+            string nomeDescricao = $"{produtosSelecionado.Nome} // {produtosSelecionado.Descricao}";
+            txtNomeProd.Text = nomeDescricao;
+            txtCodProd.Text = produtosSelecionado.Id.ToString().PadLeft(5, '0');
+            txtVUnit.Text = produtosSelecionado.Preco.ToString("N2");
+            return true;
+        }
+
+        private bool DefinirCliente(int codigoCliente)
         {
             clienteSelecionado = _vendaService.ObterCliente(codigoCliente);
+            if (clienteSelecionado.Id == 0)
+            {
+                MessageBox.Show("Por favor, digite o código de um cliente existente!");
+                LimparConteudoControlesCliente();
+                return false;
+            }
+
             txtCodCliente.Text = clienteSelecionado.Id.ToString().PadLeft(5, '0');
             txtNomeCliente.Text = clienteSelecionado.Nome;
             txtEndereco.Text = clienteSelecionado.Endereco;
             txtEmail.Text = clienteSelecionado.Email;
             txtTelefone.Text = clienteSelecionado.Telefone;
+            return clienteSelecionado.Id > 0;
+        }
+
+        private void txtCodProd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                int.TryParse(txtCodProd.Text.Trim(), out int codigoProduto);
+                if (codigoProduto > 0)
+                {
+                    if (DefinirProduto(codigoProduto))
+                        txtQuant.Focus();
+                    else
+                        txtCodProd.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Digite o código/identificação do produto que se deseja inserir na venda");
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void CalcularValorTotal(object sender, EventArgs e)
+        {
+            double.TryParse(txtQuant.Text, out double quantidade);
+            double.TryParse(txtVUnit.Text, out double unitario);
+            txtVTot.Text = (quantidade * unitario).ToString("N2");
         }
     }
 }

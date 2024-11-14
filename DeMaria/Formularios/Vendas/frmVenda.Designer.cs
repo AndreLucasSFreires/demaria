@@ -273,9 +273,9 @@
             this.lblNomeProduto.Location = new System.Drawing.Point(239, 40);
             this.lblNomeProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeProduto.Name = "lblNomeProduto";
-            this.lblNomeProduto.Size = new System.Drawing.Size(119, 17);
+            this.lblNomeProduto.Size = new System.Drawing.Size(194, 17);
             this.lblNomeProduto.TabIndex = 19;
-            this.lblNomeProduto.Text = "Nome do Produto";
+            this.lblNomeProduto.Text = "Nome do Produto / Descrição";
             // 
             // txtCodProd
             // 
@@ -287,6 +287,7 @@
             this.txtCodProd.Name = "txtCodProd";
             this.txtCodProd.Size = new System.Drawing.Size(227, 22);
             this.txtCodProd.TabIndex = 23;
+            this.txtCodProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodProd_KeyPress);
             // 
             // txtNomeProd
             // 
@@ -344,6 +345,7 @@
             this.txtQuant.Name = "txtQuant";
             this.txtQuant.Size = new System.Drawing.Size(112, 23);
             this.txtQuant.TabIndex = 35;
+            this.txtQuant.TextChanged += new System.EventHandler(this.CalcularValorTotal);
             // 
             // lblValorUnitario
             // 
@@ -365,6 +367,7 @@
             this.txtVUnit.Name = "txtVUnit";
             this.txtVUnit.Size = new System.Drawing.Size(70, 23);
             this.txtVUnit.TabIndex = 36;
+            this.txtVUnit.TextChanged += new System.EventHandler(this.CalcularValorTotal);
             // 
             // lblTotal
             // 

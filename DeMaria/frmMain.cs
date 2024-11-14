@@ -34,7 +34,8 @@ namespace DeMaria
 
         private void btnFormularioVendas_Click(object sender, EventArgs e)
         {
-            var vendaService = new Aplicacao.Servicos.VendaService(VendaRepository, ClienteRepository);
+            var vendaService = new Aplicacao.Servicos.VendaService(VendaRepository, 
+                ClienteRepository, ProdutoRepository);
             frmVenda frmVenda = new frmVenda(vendaService);
             frmVenda.ShowDialog();
         }

@@ -14,11 +14,13 @@ namespace Aplicacao.Servicos
     {
         private readonly IVendaRepository _vendaRepository;
         private readonly IClienteRepository _clienteRepository;
+        private readonly IProdutoRepository _produtoRepository;
 
-        public VendaService(IVendaRepository vendaRepository, IClienteRepository clienteRepository)
+        public VendaService(IVendaRepository vendaRepository, IClienteRepository clienteRepository, IProdutoRepository produtoRepository)
         {
             _vendaRepository = vendaRepository;
             _clienteRepository = clienteRepository;
+            _produtoRepository = produtoRepository;
         }
 
         public bool InserirVenda(VendaDto vendaDto)
@@ -64,7 +66,24 @@ namespace Aplicacao.Servicos
             return MapearCliente(_clienteRepository.ObterCliente(id));
         }
 
-        public ClienteDto MapearCliente(Cliente cliente)
+        public ProdutoDto ObterProduto(int id)
+        {
+            return MapearProduto(_produtoRepository.ObterProduto(id));
+        }
+
+        private ProdutoDto MapearProduto(Produto produto)
+        {
+            return new ProdutoDto
+            {
+                Id = produto.Id,
+                Descricao = produto.Descricao,
+                Estoque = produto.Estoque,
+                Nome = produto.Nome,
+                Preco = produto.Preco
+            };
+        }
+
+        private ClienteDto MapearCliente(Cliente cliente)
         {
             return new ClienteDto
             {

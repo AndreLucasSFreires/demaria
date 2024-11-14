@@ -44,7 +44,7 @@ namespace Infraestrutura.Repositorios
             using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
             {
                 conexao.Open();
-                var comando = new NpgsqlCommand($"INSERT INTO Clientes({colunas}) VALUES({parametros})",conexao);
+                var comando = new NpgsqlCommand($"INSERT INTO Clientes({colunas}) VALUES({parametros})", conexao);
                 comando.Parameters.AddWithValue("@nome", cliente.Nome);
                 comando.Parameters.AddWithValue("@endereco", cliente.Endereco);
                 comando.Parameters.AddWithValue("@telefone", cliente.Telefone);
@@ -59,27 +59,9 @@ namespace Infraestrutura.Repositorios
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Clientes", conexao);
-                var dataTable = new DataTable();
-                var dataAdapter = new NpgsqlDataAdapter(comando.CommandText, conexao);
-                dataAdapter.Fill(dataTable);
-                MapearClientes(dataTable, out var clientes);
+                var dataReader = comando.ExecuteReader();
+                var clientes = PreencherListagem(dataReader);
                 return clientes;
-            }
-        }
-
-        private void MapearClientes(DataTable dataTable, out List<Cliente> clientes)
-        {
-            clientes = new List<Cliente>();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                clientes.Add(new Cliente
-                {
-                    Id = row["id"].ToInt(),
-                    Nome = row["nome"].ToString(),
-                    Email = row["email"].ToString(),
-                    Endereco = row["endereco"].ToString(),
-                    Telefone = row["telefone"].ToString()
-                });
             }
         }
 
@@ -90,12 +72,28 @@ namespace Infraestrutura.Repositorios
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Clientes Where Id = @id", conexao);
                 comando.Parameters.AddWithValue("@id", id);
-                var dataTable = new DataTable();
-                var dataAdapter = new NpgsqlDataAdapter(comando.CommandText, conexao);
-                dataAdapter.Fill(dataTable);
-                MapearClientes(dataTable, out var clientes);
-                return clientes[0];
+
+                var dataReader = comando.ExecuteReader();
+                var clientes = PreencherListagem(dataReader);
+                return clientes.Count > 0 ? clientes[0] : new Cliente();
             }
+        }
+
+        private List<Cliente> PreencherListagem(NpgsqlDataReader dataReader)
+        {
+            var clientes = new List<Cliente>();
+            while (dataReader.Read())
+            {
+                clientes.Add(new Cliente
+                {
+                    Id = dataReader["id"].ToInt(),
+                    Nome = dataReader["nome"].ToString(),
+                    Email = dataReader["email"].ToString(),
+                    Endereco = dataReader["endereco"].ToString(),
+                    Telefone = dataReader["telefone"].ToString()
+                });
+            }
+            return clientes;
         }
     }
 }

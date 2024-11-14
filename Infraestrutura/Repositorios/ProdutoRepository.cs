@@ -59,28 +59,40 @@ namespace Infraestrutura.Repositorios
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Produtos", conexao);
-                var dataTable = new DataTable();
-                var dataAdapter = new NpgsqlDataAdapter(comando.CommandText, conexao);
-                dataAdapter.Fill(dataTable);
-                MapearProdutos(dataTable, out var produtos);
+                var dataReader = comando.ExecuteReader();
+                var produtos = PreencherListagem(dataReader);
                 return produtos;
             }
         }
 
-        private void MapearProdutos(DataTable dataTable, out List<Produto> produtos)
+        public Produto ObterProduto(int id)
         {
-            produtos = new List<Produto>();
-            foreach (DataRow row in dataTable.Rows)
+            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            {
+                conexao.Open();
+                var comando = new NpgsqlCommand($"SELECT id, {colunas} From Produtos Where Id = @id", conexao);
+                comando.Parameters.AddWithValue("@id", id);
+                var dataReader = comando.ExecuteReader();
+                var produtos = PreencherListagem(dataReader);
+                return produtos.Count > 0 ? produtos[0] : new Produto();
+            }
+        }
+
+        private List<Produto> PreencherListagem(NpgsqlDataReader dataReader)
+        {
+            var produtos = new List<Produto>();
+            while (dataReader.Read())
             {
                 produtos.Add(new Produto
                 {
-                    Id = row["id"].ToInt(),
-                    Nome = row["nome"].ToString(),
-                    Descricao = row["descricao"].ToString(),
-                    Preco = row["preco"].ToDouble(),
-                    Estoque = row["estoque"].ToDouble()
+                    Id = dataReader["id"].ToInt(),
+                    Nome = dataReader["nome"].ToString(),
+                    Descricao = dataReader["descricao"].ToString(),
+                    Preco = dataReader["preco"].ToDouble(),
+                    Estoque = dataReader["estoque"].ToDouble()
                 });
             }
+            return produtos;
         }
     }
 
