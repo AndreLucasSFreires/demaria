@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\ClienteDto.cs" />
+    <Compile Include="DTO\ItemVendaDto.cs" />
     <Compile Include="DTO\ProdutoDto.cs" />
     <Compile Include="DTO\VendaDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\ClienteService.cs" />
+    <Compile Include="Servicos\ItemVendaService.cs" />
     <Compile Include="Servicos\ProdutoService.cs" />
     <Compile Include="Servicos\VendaService.cs" />
   </ItemGroup>

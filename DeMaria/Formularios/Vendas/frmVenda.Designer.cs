@@ -31,11 +31,6 @@
             this.tblLayCabecalho = new System.Windows.Forms.TableLayoutPanel();
             this.tblLancamento = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProdutosLancamento = new System.Windows.Forms.DataGridView();
-            this.colDgvProdutosLancamentoCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayProdutos = new System.Windows.Forms.TableLayoutPanel();
             this.lblNomeProduto = new System.Windows.Forms.Label();
             this.txtCodProd = new System.Windows.Forms.TextBox();
@@ -103,6 +98,13 @@
             this.colGridItensFrete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGridItensIdLancamentoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNFGridTentativaNCM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayCabecalho.SuspendLayout();
             this.tblLancamento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutosLancamento)).BeginInit();
@@ -167,8 +169,8 @@
             this.tblLancamento.Location = new System.Drawing.Point(3, 145);
             this.tblLancamento.Name = "tblLancamento";
             this.tblLancamento.RowCount = 3;
-            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.27957F));
-            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.16129F));
+            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.83333F));
+            this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.33871F));
             this.tblLancamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.69355F));
             this.tblLancamento.Size = new System.Drawing.Size(1219, 744);
             this.tblLancamento.TabIndex = 48;
@@ -180,14 +182,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProdutosLancamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutosLancamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colDgvProdutosLancamentoId,
             this.colDgvProdutosLancamentoCodigo,
             this.colDgvProdutosLancamentoNome,
+            this.colDgvProdutosLancamento,
             this.colDgvProdutosLancamentoQuantidade,
             this.colDgvProdutosLancamentoUnitario,
             this.colDgvProdutosLancamentoTotal});
             this.dgvProdutosLancamento.Enabled = false;
             this.dgvProdutosLancamento.EnableHeadersVisualStyles = false;
-            this.dgvProdutosLancamento.Location = new System.Drawing.Point(3, 138);
+            this.dgvProdutosLancamento.Location = new System.Drawing.Point(3, 158);
             this.dgvProdutosLancamento.MultiSelect = false;
             this.dgvProdutosLancamento.Name = "dgvProdutosLancamento";
             this.dgvProdutosLancamento.RowHeadersVisible = false;
@@ -196,43 +200,8 @@
             this.dgvProdutosLancamento.ShowCellToolTips = false;
             this.dgvProdutosLancamento.ShowEditingIcon = false;
             this.dgvProdutosLancamento.ShowRowErrors = false;
-            this.dgvProdutosLancamento.Size = new System.Drawing.Size(1213, 515);
+            this.dgvProdutosLancamento.Size = new System.Drawing.Size(1213, 495);
             this.dgvProdutosLancamento.TabIndex = 47;
-            // 
-            // colDgvProdutosLancamentoCodigo
-            // 
-            this.colDgvProdutosLancamentoCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoCodigo.DataPropertyName = "Codigo";
-            this.colDgvProdutosLancamentoCodigo.HeaderText = "Codigo";
-            this.colDgvProdutosLancamentoCodigo.Name = "colDgvProdutosLancamentoCodigo";
-            // 
-            // colDgvProdutosLancamentoNome
-            // 
-            this.colDgvProdutosLancamentoNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoNome.DataPropertyName = "NomeProduto";
-            this.colDgvProdutosLancamentoNome.HeaderText = "Nome Produto";
-            this.colDgvProdutosLancamentoNome.Name = "colDgvProdutosLancamentoNome";
-            // 
-            // colDgvProdutosLancamentoQuantidade
-            // 
-            this.colDgvProdutosLancamentoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoQuantidade.DataPropertyName = "Quantidade";
-            this.colDgvProdutosLancamentoQuantidade.HeaderText = "Quantidade";
-            this.colDgvProdutosLancamentoQuantidade.Name = "colDgvProdutosLancamentoQuantidade";
-            // 
-            // colDgvProdutosLancamentoUnitario
-            // 
-            this.colDgvProdutosLancamentoUnitario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoUnitario.DataPropertyName = "Unitario";
-            this.colDgvProdutosLancamentoUnitario.HeaderText = "Unitario";
-            this.colDgvProdutosLancamentoUnitario.Name = "colDgvProdutosLancamentoUnitario";
-            // 
-            // colDgvProdutosLancamentoTotal
-            // 
-            this.colDgvProdutosLancamentoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoTotal.DataPropertyName = "Total";
-            this.colDgvProdutosLancamentoTotal.HeaderText = "Total";
-            this.colDgvProdutosLancamentoTotal.Name = "colDgvProdutosLancamentoTotal";
             // 
             // tblLayProdutos
             // 
@@ -270,10 +239,11 @@
             // lblNomeProduto
             // 
             this.lblNomeProduto.AutoSize = true;
+            this.lblNomeProduto.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeProduto.Location = new System.Drawing.Point(239, 40);
             this.lblNomeProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeProduto.Name = "lblNomeProduto";
-            this.lblNomeProduto.Size = new System.Drawing.Size(194, 17);
+            this.lblNomeProduto.Size = new System.Drawing.Size(196, 19);
             this.lblNomeProduto.TabIndex = 19;
             this.lblNomeProduto.Text = "Nome do Produto / Descrição";
             // 
@@ -299,14 +269,16 @@
             this.txtNomeProd.Name = "txtNomeProd";
             this.txtNomeProd.Size = new System.Drawing.Size(672, 23);
             this.txtNomeProd.TabIndex = 24;
+            this.txtNomeProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // lblCodigoProduto
             // 
             this.lblCodigoProduto.AutoSize = true;
+            this.lblCodigoProduto.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoProduto.Location = new System.Drawing.Point(4, 40);
             this.lblCodigoProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoProduto.Name = "lblCodigoProduto";
-            this.lblCodigoProduto.Size = new System.Drawing.Size(52, 17);
+            this.lblCodigoProduto.Size = new System.Drawing.Size(54, 19);
             this.lblCodigoProduto.TabIndex = 47;
             this.lblCodigoProduto.Text = "Código";
             // 
@@ -328,10 +300,11 @@
             // lblQuant
             // 
             this.lblQuant.AutoSize = true;
+            this.lblQuant.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuant.Location = new System.Drawing.Point(919, 40);
             this.lblQuant.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuant.Name = "lblQuant";
-            this.lblQuant.Size = new System.Drawing.Size(47, 17);
+            this.lblQuant.Size = new System.Drawing.Size(48, 19);
             this.lblQuant.TabIndex = 31;
             this.lblQuant.Text = "Quant";
             // 
@@ -346,14 +319,16 @@
             this.txtQuant.Size = new System.Drawing.Size(112, 23);
             this.txtQuant.TabIndex = 35;
             this.txtQuant.TextChanged += new System.EventHandler(this.CalcularValorTotal);
+            this.txtQuant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuant_KeyPress);
             // 
             // lblValorUnitario
             // 
             this.lblValorUnitario.AutoSize = true;
+            this.lblValorUnitario.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorUnitario.Location = new System.Drawing.Point(1039, 40);
             this.lblValorUnitario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblValorUnitario.Name = "lblValorUnitario";
-            this.lblValorUnitario.Size = new System.Drawing.Size(57, 17);
+            this.lblValorUnitario.Size = new System.Drawing.Size(60, 19);
             this.lblValorUnitario.TabIndex = 32;
             this.lblValorUnitario.Text = "Unitario";
             // 
@@ -368,14 +343,16 @@
             this.txtVUnit.Size = new System.Drawing.Size(70, 23);
             this.txtVUnit.TabIndex = 36;
             this.txtVUnit.TextChanged += new System.EventHandler(this.CalcularValorTotal);
+            this.txtVUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVUnit_KeyPress);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(1117, 40);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(40, 17);
+            this.lblTotal.Size = new System.Drawing.Size(40, 19);
             this.lblTotal.TabIndex = 34;
             this.lblTotal.Text = "Total";
             // 
@@ -508,6 +485,7 @@
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(400, 28);
             this.txtNomeCliente.TabIndex = 4;
+            this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // lblTelefone
             // 
@@ -536,6 +514,7 @@
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(502, 28);
             this.txtTelefone.TabIndex = 8;
+            this.txtTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // txtEmail
             // 
@@ -550,6 +529,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(707, 28);
             this.txtEmail.TabIndex = 10;
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // lblEmail
             // 
@@ -578,6 +558,7 @@
             this.txtDoc.Name = "txtDoc";
             this.txtDoc.Size = new System.Drawing.Size(98, 28);
             this.txtDoc.TabIndex = 6;
+            this.txtDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // labelDocumento
             // 
@@ -620,6 +601,7 @@
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(707, 28);
             this.txtEndereco.TabIndex = 16;
+            this.txtEndereco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TravarDigitacao);
             // 
             // colItensProd
             // 
@@ -943,6 +925,55 @@
             this.colNFGridTentativaNCM.ReadOnly = true;
             this.colNFGridTentativaNCM.Visible = false;
             // 
+            // colDgvProdutosLancamentoId
+            // 
+            this.colDgvProdutosLancamentoId.DataPropertyName = "Id";
+            this.colDgvProdutosLancamentoId.HeaderText = "Id";
+            this.colDgvProdutosLancamentoId.Name = "colDgvProdutosLancamentoId";
+            this.colDgvProdutosLancamentoId.Visible = false;
+            // 
+            // colDgvProdutosLancamentoCodigo
+            // 
+            this.colDgvProdutosLancamentoCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoCodigo.DataPropertyName = "CodigoProduto";
+            this.colDgvProdutosLancamentoCodigo.HeaderText = "Codigo";
+            this.colDgvProdutosLancamentoCodigo.Name = "colDgvProdutosLancamentoCodigo";
+            // 
+            // colDgvProdutosLancamentoNome
+            // 
+            this.colDgvProdutosLancamentoNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoNome.DataPropertyName = "NomeProduto";
+            this.colDgvProdutosLancamentoNome.HeaderText = "Nome Produto";
+            this.colDgvProdutosLancamentoNome.Name = "colDgvProdutosLancamentoNome";
+            // 
+            // colDgvProdutosLancamento
+            // 
+            this.colDgvProdutosLancamento.DataPropertyName = "CodigoVenda";
+            this.colDgvProdutosLancamento.HeaderText = "CodigoVenda";
+            this.colDgvProdutosLancamento.Name = "colDgvProdutosLancamento";
+            this.colDgvProdutosLancamento.Visible = false;
+            // 
+            // colDgvProdutosLancamentoQuantidade
+            // 
+            this.colDgvProdutosLancamentoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoQuantidade.DataPropertyName = "Quantidade";
+            this.colDgvProdutosLancamentoQuantidade.HeaderText = "Quantidade";
+            this.colDgvProdutosLancamentoQuantidade.Name = "colDgvProdutosLancamentoQuantidade";
+            // 
+            // colDgvProdutosLancamentoUnitario
+            // 
+            this.colDgvProdutosLancamentoUnitario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoUnitario.DataPropertyName = "ValorUnitario";
+            this.colDgvProdutosLancamentoUnitario.HeaderText = "Unitario";
+            this.colDgvProdutosLancamentoUnitario.Name = "colDgvProdutosLancamentoUnitario";
+            // 
+            // colDgvProdutosLancamentoTotal
+            // 
+            this.colDgvProdutosLancamentoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoTotal.DataPropertyName = "ValorTotal";
+            this.colDgvProdutosLancamentoTotal.HeaderText = "Total";
+            this.colDgvProdutosLancamentoTotal.Name = "colDgvProdutosLancamentoTotal";
+            // 
             // frmVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1029,16 +1060,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colGridItensIdLancamentoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNFGridTentativaNCM;
         private System.Windows.Forms.DataGridView dgvProdutosLancamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoCodigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoNome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoQuantidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoTotal;
         private System.Windows.Forms.TableLayoutPanel tblLancamento;
         private System.Windows.Forms.TableLayoutPanel tblBotoes;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoQuantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDgvProdutosLancamentoTotal;
     }
 }

@@ -3,18 +3,16 @@ using Dominio.Entidades;
 using Dominio.Entidades.Interfaces;
 using Npgsql;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Infraestrutura.Repositorios
 {
     public class ClienteRepository : IClienteRepository
     {
-        public string connectionString = "Server=127.0.0.1;Port=5432;Database=demaria;User Id=postgres;Password=123;";
         public const string colunas = "nome, endereco, telefone, email";
         public const string parametros = "@nome, @endereco, @telefone, @email";
         public bool Atualizar(Cliente cliente)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"UPDATE Clientes SET nome = @nome, endereco = @endereco, telefone = " +
@@ -30,7 +28,7 @@ namespace Infraestrutura.Repositorios
 
         public bool Excluir(int id)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"DELETE FROM Clientes Where Id = @id", conexao);
@@ -41,7 +39,7 @@ namespace Infraestrutura.Repositorios
 
         public bool Inserir(Cliente cliente)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"INSERT INTO Clientes({colunas}) VALUES({parametros})", conexao);
@@ -55,7 +53,7 @@ namespace Infraestrutura.Repositorios
 
         public List<Cliente> ObterTodos()
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Clientes", conexao);
@@ -67,7 +65,7 @@ namespace Infraestrutura.Repositorios
 
         public Cliente ObterCliente(int id)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Clientes Where Id = @id", conexao);

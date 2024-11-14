@@ -22,15 +22,25 @@ namespace DeMaria.Formularios.Vendas
         const string textoSalvar = "Salvar";
 
         private readonly VendaService _vendaService;
+        private readonly ItemVendaService _itemVendaService;
 
         VendaDto vendaSelecionada = null;
         ClienteDto clienteSelecionado = null;
         ProdutoDto produtosSelecionado = null;
 
-        public frmVenda(VendaService vendaService)
+        List<ItemVendaDto> itensVenda = new List<ItemVendaDto>();
+
+        public frmVenda(VendaService vendaService, ItemVendaService itemVendaService)
         {
             InitializeComponent();
             _vendaService = vendaService;
+            _itemVendaService = itemVendaService;
+        }
+
+        public VendaDto IniciarNovaVenda()
+        {
+            itensVenda = new List<ItemVendaDto>();
+            return new VendaDto { };
         }
 
         private int ObterIdVenda()
@@ -70,6 +80,7 @@ namespace DeMaria.Formularios.Vendas
                 btnEditar.Enabled = false;
                 btnExcluir.Enabled = false;
                 estadoBotaoNovo = EstadoBotao.Salvar;
+                vendaSelecionada = IniciarNovaVenda();
                 txtCodCliente.Focus();
             }
             if (botao == EnumBotoesCadastro.SalvarDoBotaoNovo)
@@ -240,9 +251,86 @@ namespace DeMaria.Formularios.Vendas
 
         private void CalcularValorTotal(object sender, EventArgs e)
         {
-            double.TryParse(txtQuant.Text, out double quantidade);
-            double.TryParse(txtVUnit.Text, out double unitario);
+            var quantidade = ObterQuantidadeLancamento();
+            var unitario = ObterValorUnitarioLancamento();
             txtVTot.Text = (quantidade * unitario).ToString("N2");
+        }
+
+        private double ObterQuantidadeLancamento()
+        {
+            double.TryParse(txtQuant.Text, out var quantidade);
+            return Math.Round(quantidade, 2);
+        }
+        private double ObterValorUnitarioLancamento()
+        {
+            double.TryParse(txtVUnit.Text, out var valorUnitario);
+            return Math.Round(valorUnitario, 2);
+        }
+
+        private void CalcularValorTotalLancamentosProdutos()
+        {
+                
+        }
+        
+        private void txtVUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (!LancarProdutoVenda())
+                    return; 
+
+                txtCodProd.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private bool LancarProdutoVenda()
+        {
+            if (produtosSelecionado.Id == 0)
+            {
+                MessageBox.Show("Por favor, selecione um produto para lançar na venda");
+                txtCodProd.Focus();
+                return false;
+            }
+
+            itensVenda.Add(ObterItemVendaDtoLancamento());
+            CalcularValorTotalLancamentosProdutos();
+            LimparConteudoControlesProduto();
+            CarregarGridItensProdutos();
+            return true;
+        }
+
+        private void CarregarGridItensProdutos()
+        {
+            dgvProdutosLancamento.DataSource = itensVenda;
+        }
+
+        private ItemVendaDto ObterItemVendaDtoLancamento()
+        {
+            ItemVendaDto itemVendaDto = new ItemVendaDto
+            {
+                CodigoProduto = produtosSelecionado.Id,
+                NomeProduto = produtosSelecionado.Nome,
+                CodigoVenda = vendaSelecionada.Id,
+                Quantidade = ObterQuantidadeLancamento(),
+                ValorUnitario = ObterValorUnitarioLancamento()
+            };
+            itemVendaDto.ValorTotal = itemVendaDto.Quantidade * itemVendaDto.ValorUnitario;
+            return itemVendaDto;
+        }
+
+        private void TravarDigitacao(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void txtQuant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtVUnit.Focus();
+                e.Handled = true;
+            }
         }
     }
 }
