@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageListagem = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.lblDigiteNomeClientePesquisar = new System.Windows.Forms.Label();
             this.dgvClientesListagem = new System.Windows.Forms.DataGridView();
+            this.dgvClientesListagemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvClientesListagemNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvClientesListagemTelefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvClientesListagemEndereco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvClientesListagemEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageCadastro = new System.Windows.Forms.TabPage();
             this.tblLayCadastro = new System.Windows.Forms.TableLayoutPanel();
             this.lblNome = new System.Windows.Forms.Label();
@@ -49,11 +54,6 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.lblDica = new System.Windows.Forms.Label();
-            this.dgvClientesListagemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvClientesListagemNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvClientesListagemTelefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvClientesListagemEndereco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvClientesListagemEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabPageListagem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesListagem)).BeginInit();
@@ -77,7 +77,7 @@
             // 
             // tabPageListagem
             // 
-            this.tabPageListagem.Controls.Add(this.textBox1);
+            this.tabPageListagem.Controls.Add(this.txtPesquisa);
             this.tabPageListagem.Controls.Add(this.lblDigiteNomeClientePesquisar);
             this.tabPageListagem.Controls.Add(this.dgvClientesListagem);
             this.tabPageListagem.Location = new System.Drawing.Point(4, 25);
@@ -88,15 +88,15 @@
             this.tabPageListagem.Text = "F1 - Listagem";
             this.tabPageListagem.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtPesquisa
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(6, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(872, 30);
-            this.textBox1.TabIndex = 5;
+            this.txtPesquisa.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisa.Location = new System.Drawing.Point(6, 41);
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(872, 30);
+            this.txtPesquisa.TabIndex = 5;
             // 
             // lblDigiteNomeClientePesquisar
             // 
@@ -113,8 +113,8 @@
             this.dgvClientesListagem.AllowUserToAddRows = false;
             this.dgvClientesListagem.AllowUserToDeleteRows = false;
             this.dgvClientesListagem.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.dgvClientesListagem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvClientesListagem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvClientesListagem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -139,6 +139,42 @@
             this.dgvClientesListagem.TabIndex = 0;
             this.dgvClientesListagem.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientesListagem_RowEnter);
             this.dgvClientesListagem.DoubleClick += new System.EventHandler(this.dgvClientesListagem_DoubleClick);
+            // 
+            // dgvClientesListagemId
+            // 
+            this.dgvClientesListagemId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvClientesListagemId.DataPropertyName = "Id";
+            this.dgvClientesListagemId.FillWeight = 30F;
+            this.dgvClientesListagemId.HeaderText = "Id";
+            this.dgvClientesListagemId.Name = "dgvClientesListagemId";
+            // 
+            // dgvClientesListagemNome
+            // 
+            this.dgvClientesListagemNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvClientesListagemNome.DataPropertyName = "Nome";
+            this.dgvClientesListagemNome.HeaderText = "Nome";
+            this.dgvClientesListagemNome.Name = "dgvClientesListagemNome";
+            // 
+            // dgvClientesListagemTelefone
+            // 
+            this.dgvClientesListagemTelefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvClientesListagemTelefone.DataPropertyName = "Telefone";
+            this.dgvClientesListagemTelefone.HeaderText = "Telefone";
+            this.dgvClientesListagemTelefone.Name = "dgvClientesListagemTelefone";
+            // 
+            // dgvClientesListagemEndereco
+            // 
+            this.dgvClientesListagemEndereco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvClientesListagemEndereco.DataPropertyName = "Endereco";
+            this.dgvClientesListagemEndereco.HeaderText = "Endereço";
+            this.dgvClientesListagemEndereco.Name = "dgvClientesListagemEndereco";
+            // 
+            // dgvClientesListagemEmail
+            // 
+            this.dgvClientesListagemEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvClientesListagemEmail.DataPropertyName = "Email";
+            this.dgvClientesListagemEmail.HeaderText = "E-mail";
+            this.dgvClientesListagemEmail.Name = "dgvClientesListagemEmail";
             // 
             // tabPageCadastro
             // 
@@ -342,42 +378,6 @@
             this.lblDica.TabIndex = 7;
             this.lblDica.Text = "Dê um duplo-clique p/ Editar";
             // 
-            // dgvClientesListagemId
-            // 
-            this.dgvClientesListagemId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvClientesListagemId.DataPropertyName = "Id";
-            this.dgvClientesListagemId.FillWeight = 30F;
-            this.dgvClientesListagemId.HeaderText = "Id";
-            this.dgvClientesListagemId.Name = "dgvClientesListagemId";
-            // 
-            // dgvClientesListagemNome
-            // 
-            this.dgvClientesListagemNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvClientesListagemNome.DataPropertyName = "Nome";
-            this.dgvClientesListagemNome.HeaderText = "Nome";
-            this.dgvClientesListagemNome.Name = "dgvClientesListagemNome";
-            // 
-            // dgvClientesListagemTelefone
-            // 
-            this.dgvClientesListagemTelefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvClientesListagemTelefone.DataPropertyName = "Telefone";
-            this.dgvClientesListagemTelefone.HeaderText = "Telefone";
-            this.dgvClientesListagemTelefone.Name = "dgvClientesListagemTelefone";
-            // 
-            // dgvClientesListagemEndereco
-            // 
-            this.dgvClientesListagemEndereco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvClientesListagemEndereco.DataPropertyName = "Endereco";
-            this.dgvClientesListagemEndereco.HeaderText = "Endereço";
-            this.dgvClientesListagemEndereco.Name = "dgvClientesListagemEndereco";
-            // 
-            // dgvClientesListagemEmail
-            // 
-            this.dgvClientesListagemEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvClientesListagemEmail.DataPropertyName = "Email";
-            this.dgvClientesListagemEmail.HeaderText = "E-mail";
-            this.dgvClientesListagemEmail.Name = "dgvClientesListagemEmail";
-            // 
             // frmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -391,7 +391,6 @@
             this.Text = "Visualização e Cadastro de Clientes - Pressione a tecla F12 para fechar a tela";
             this.Load += new System.EventHandler(this.frmCadastroCliente_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadastroCliente_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmCadastroCliente_KeyPress);
             this.tabControl.ResumeLayout(false);
             this.tabPageListagem.ResumeLayout(false);
             this.tabPageListagem.PerformLayout();
@@ -424,7 +423,7 @@
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.DataGridView dgvClientesListagem;
         private System.Windows.Forms.Label lblDigiteNomeClientePesquisar;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Label lblDica;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvClientesListagemId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvClientesListagemNome;

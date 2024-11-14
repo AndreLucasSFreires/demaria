@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DeMaria.Formularios.Clientes;
+using DeMaria.Formularios.Produtos;
 using Infraestrutura.Repositorios;
 
 namespace DeMaria
@@ -17,7 +18,15 @@ namespace DeMaria
             var repositorio = new ClienteRepository();
             var clienteService = new Aplicacao.Servicos.ClienteService(repositorio);
             var frmClientes = new frmCadastroCliente(clienteService);
-            frmClientes.Show();
+            frmClientes.ShowDialog();
+        }
+
+        private void btnFormularioProdutos_Click(object sender, EventArgs e)
+        {
+            var repositorio = new ProdutoRepository();
+            var produtoService = new Aplicacao.Servicos.ProdutoService(repositorio);
+            var frmProdutos = new frmCadastroProdutos(produtoService);
+            frmProdutos.ShowDialog();
         }
     }
 }

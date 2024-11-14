@@ -1,5 +1,6 @@
 ﻿using Aplicacao.DTO;
 using Aplicacao.Servicos;
+using DeMaria.Formularios.Enums;
 using System;
 using System.Windows.Forms;
 
@@ -201,6 +202,7 @@ namespace DeMaria.Formularios.Clientes
 
                     DefinirHabilitacaoTxts(habilitar: false);
                     ExibirClientesCadastrados();
+                    clienteSelecionado = null;
                     tabControl.SelectedTab = tabPageListagem;
                     break;
 
@@ -318,13 +320,5 @@ namespace DeMaria.Formularios.Clientes
             return clienteSelecionado != null;
         }
     }
-    public enum EstadoBotao
-    {
-        Default, Salvar
-    }
-    public enum EnumBotoesCadastro
-    {
-        Novo, Editar, Pesquisar, Excluir, SalvarDoBotaoNovo,
-        SalvarDoBotaoEditar, Voltar
-    }
+    
 }

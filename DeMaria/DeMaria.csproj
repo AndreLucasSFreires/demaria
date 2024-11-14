@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumBotoesCadastro.cs" />
+    <Compile Include="Enums\EstadoBotao.cs" />
+    <Compile Include="Formularios\Produtos\frmCadastroProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Produtos\frmCadastroProdutos.Designer.cs">
+      <DependentUpon>frmCadastroProdutos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +68,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Produtos\frmCadastroProdutos.resx">
+      <DependentUpon>frmCadastroProdutos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +104,10 @@
       <Project>{DABC0D8D-2D76-4B9C-90F8-2FCD0274C106}</Project>
       <Name>Aplicacao</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CrossCutting\CrossCutting.csproj">
+      <Project>{C3BB1BA2-CBC1-40DF-BD5A-613A38A1F8E4}</Project>
+      <Name>CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Dominio.csproj">
       <Project>{ABD22E86-5631-409A-9362-5C4D9EF91A7F}</Project>
       <Name>Dominio</Name>
@@ -102,8 +117,6 @@
       <Name>Infraestrutura</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Formularios\Produtos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

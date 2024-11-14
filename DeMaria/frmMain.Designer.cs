@@ -54,6 +54,7 @@
             this.btnFormularioProdutos.TabIndex = 1;
             this.btnFormularioProdutos.Text = "Gerenciar &Produtos";
             this.btnFormularioProdutos.UseVisualStyleBackColor = true;
+            this.btnFormularioProdutos.Click += new System.EventHandler(this.btnFormularioProdutos_Click);
             // 
             // btnFormularioVendas
             // 
@@ -79,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 331);
+            this.ClientSize = new System.Drawing.Size(752, 388);
             this.Controls.Add(this.btnFormularioRelatorios);
             this.Controls.Add(this.btnFormularioVendas);
             this.Controls.Add(this.btnFormularioProdutos);
