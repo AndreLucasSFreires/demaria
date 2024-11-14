@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using DeMaria.Formularios.Clientes;
 using DeMaria.Formularios.Produtos;
+using DeMaria.Formularios.Vendas;
 using Infraestrutura.Repositorios;
 
 namespace DeMaria
@@ -27,6 +28,12 @@ namespace DeMaria
             var produtoService = new Aplicacao.Servicos.ProdutoService(repositorio);
             var frmProdutos = new frmCadastroProdutos(produtoService);
             frmProdutos.ShowDialog();
+        }
+
+        private void btnFormularioVendas_Click(object sender, EventArgs e)
+        {
+            frmVenda frmVenda = new frmVenda();
+            frmVenda.ShowDialog();
         }
     }
 }

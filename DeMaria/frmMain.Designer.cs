@@ -65,6 +65,7 @@
             this.btnFormularioVendas.TabIndex = 2;
             this.btnFormularioVendas.Text = "&Vendas";
             this.btnFormularioVendas.UseVisualStyleBackColor = true;
+            this.btnFormularioVendas.Click += new System.EventHandler(this.btnFormularioVendas_Click);
             // 
             // btnFormularioRelatorios
             // 
