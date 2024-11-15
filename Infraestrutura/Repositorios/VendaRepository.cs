@@ -41,23 +41,23 @@ namespace Infraestrutura.Repositorios
             }
         }
 
-        public bool Inserir(Venda venda)
+        public bool Inserir(Venda venda, out int idInserido)
         {
             bool inserido = false;
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
-                var comando = new NpgsqlCommand($"INSERT INTO Vendas(id, {colunas}) VALUES(@id, {parametros})", conexao);
-                comando.Parameters.AddWithValue("@id", venda.Id);
-                comando.Parameters.AddWithValue("@codcliente", venda.CodigoCliente);
+                var comando = new NpgsqlCommand($"INSERT INTO Vendas({colunas}) VALUES({parametros})", conexao);
+                comando.Parameters.AddWithValue("@codcliente", venda.Cliente.Id);
                 comando.Parameters.AddWithValue("@dataemissao", venda.DataEmissao);
                 comando.Parameters.AddWithValue("@valor", venda.Valor);
                 inserido = comando.ExecuteNonQuery() > 0;
+                idInserido = ObterUltimoIdInserido();
             }
             return inserido;
         }
 
-        public int ObterUltimoIdInserido()
+        private int ObterUltimoIdInserido()
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
@@ -71,7 +71,7 @@ namespace Infraestrutura.Repositorios
             }
         }
 
-        public List<Venda> ObterTodos()
+        public List<Venda> ObterTodasAsVendas()
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {

@@ -37,7 +37,7 @@ namespace DeMaria
         private void btnFormularioVendas_Click(object sender, EventArgs e)
         {
             var vendaService = new VendaService(VendaRepository, 
-                ClienteRepository, ProdutoRepository);
+                ClienteRepository, ProdutoRepository, ItemVendaRepository);
 
             var itemVendaService = new ItemVendaService(ItemVendaRepository);
 

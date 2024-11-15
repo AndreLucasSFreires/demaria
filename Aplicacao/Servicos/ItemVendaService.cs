@@ -1,4 +1,6 @@
 ﻿using Aplicacao.DTO;
+using Aplicacao.Mapeamento;
+using AutoMapper;
 using Dominio.Entidades;
 using Entidades.Interfaces;
 using System;
@@ -12,6 +14,7 @@ namespace Aplicacao.Servicos
     public class ItemVendaService
     {
         private readonly IItemVendaRepository _itemVendaRepository;
+        readonly MapperConfiguration configAutomapper = Mappings.ConfigurarAutoMapper();
 
         public ItemVendaService(IItemVendaRepository itemVendaRepository)
         {
@@ -20,10 +23,17 @@ namespace Aplicacao.Servicos
 
         public bool InserirItemVenda(ItemVendaDto itemVendaDto)
         {
-            var itemVenda = new ItemVenda(itemVendaDto.CodigoVenda, itemVendaDto.CodigoProduto, itemVendaDto.ValorUnitario, 
-                itemVendaDto.Quantidade, itemVendaDto.ValorTotal);
+            var mapper = configAutomapper.CreateMapper();
+            var venda = mapper.Map<Venda>(itemVendaDto.Venda);
+            var produto = mapper.Map<Produto>(itemVendaDto.ProdutoDto);
+
+            var itemVenda = new ItemVenda(itemVendaDto.ValorUnitario, itemVendaDto.Quantidade, itemVendaDto.ValorTotal,
+                venda, produto);
+
             return _itemVendaRepository.Inserir(itemVenda);
         }
+
+        
         public void ExcluirItemVenda(int id)
         {
             _itemVendaRepository.Excluir(id);
@@ -37,8 +47,6 @@ namespace Aplicacao.Servicos
                 itensVendaDto.Add(new ItemVendaDto
                 {
                     Id = itemVenda.Id,
-                    CodigoProduto = itemVenda.CodigoProduto,
-                    CodigoVenda = itemVenda.CodigoVenda,
                     Quantidade = itemVenda.Quantidade,
                     ValorTotal = itemVenda.ValorTotal,
                     ValorUnitario = itemVenda.ValorUnitario

@@ -28,8 +28,8 @@ namespace Infraestrutura.Repositorios
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"INSERT INTO Itensvenda({colunas}) VALUES({parametros})", conexao);
-                comando.Parameters.AddWithValue("@codvenda", itemVenda.CodigoVenda);
-                comando.Parameters.AddWithValue("@codproduto", itemVenda.CodigoProduto);
+                comando.Parameters.AddWithValue("@codvenda", itemVenda.Venda.Id);
+                comando.Parameters.AddWithValue("@codproduto", itemVenda.Produto.Id);
                 comando.Parameters.AddWithValue("@valorunitario", itemVenda.ValorUnitario);
                 comando.Parameters.AddWithValue("@quantidade", itemVenda.Quantidade);
                 comando.Parameters.AddWithValue("@valortotal", itemVenda.ValorTotal);
@@ -45,8 +45,8 @@ namespace Infraestrutura.Repositorios
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Itensvenda Where codvenda = @id", conexao);
                 comando.Parameters.AddWithValue("@id", id);
                 var dataReader = comando.ExecuteReader();
-                var clientes = PreencherListagem(dataReader);
-                return clientes;
+                var itensVenda = PreencherListagem(dataReader);
+                return itensVenda;
             }
         }
 
