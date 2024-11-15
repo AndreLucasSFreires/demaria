@@ -16,6 +16,7 @@ namespace Aplicacao.Servicos
         private readonly IProdutoRepository _produtoRepository;
         private readonly IItemVendaRepository _itemVendaRepository;
         readonly MapperConfiguration configAutomapper = Mappings.ConfigurarAutoMapper();
+        IMapper mapper;
 
         public VendaService(IVendaRepository vendaRepository, IClienteRepository clienteRepository, IProdutoRepository produtoRepository, IItemVendaRepository itemVendaRepository)
         {
@@ -23,12 +24,11 @@ namespace Aplicacao.Servicos
             _clienteRepository = clienteRepository;
             _produtoRepository = produtoRepository;
             _itemVendaRepository = itemVendaRepository;
+            mapper = configAutomapper.CreateMapper();
         }
 
         public bool InserirVenda(VendaDto vendaDto)
         {
-            var mapper = configAutomapper.CreateMapper();
-
             var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
 
             var venda = new Venda(vendaDto.Cliente.Id, 
@@ -41,14 +41,15 @@ namespace Aplicacao.Servicos
             return inserido;
         }
 
-        public bool AtualizarVenda(VendaDto dto)
+        public bool AtualizarVenda(VendaDto vendaDto)
         {
+            var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
             var venda = new Venda
                 (
-                    dto.Id, 
-                    Mapeamentos.MapearCliente(dto.Cliente), 
-                    dto.DataEmissao, 
-                    dto.Valor
+                    vendaDto.Id, 
+                    cliente, 
+                    vendaDto.DataEmissao, 
+                    vendaDto.Valor
                 );
 
             return _vendaRepository.Atualizar(venda);
@@ -72,12 +73,13 @@ namespace Aplicacao.Servicos
                     Valor = vendaRepositorio.Valor,
                     Cliente = ObterCliente(vendaRepositorio.CodigoCliente)
                 };
+
                 var itens = _itemVendaRepository.ObterTodosPorVenda(vendaDto.Id);
+                itens.Select(itemVenda => itemVenda.Produto = ObterProduto(itemVenda.CodigoProduto)).ToList();
 
-                itens.Select(itemVenda =>
-                    itemVenda.Produto = ObterProduto(itemVenda.CodigoProduto)).ToList();
+                var itensVenda = itens.Select(x => mapper.Map<ItemVendaDto>(x)).ToList();
 
-                vendaDto.ItensVenda = itens.Select(x => Mapeamentos.MapearItemVendaDto(x)).ToList();
+                vendaDto.ItensVenda = itensVenda;
                 vendasDto.Add(vendaDto);
             }
             return vendasDto;
@@ -85,7 +87,9 @@ namespace Aplicacao.Servicos
 
         public ClienteDto ObterCliente(int id)
         {
-            return Mapeamentos.MapearClienteDto(_clienteRepository.ObterCliente(id));
+            var cliente = _clienteRepository.ObterCliente(id);
+            var clienteDto = mapper.Map<ClienteDto>(cliente);
+            return clienteDto;
         }
 
         public Produto ObterProduto(int id)
@@ -95,7 +99,9 @@ namespace Aplicacao.Servicos
 
         public ProdutoDto ObterProdutoDto(int id)
         {
-            return Mapeamentos.MapearProdutoDto(_produtoRepository.ObterProduto(id));
+            var produto = _produtoRepository.ObterProduto(id);
+            var produtoDto = mapper.Map<ProdutoDto>(produto);
+            return produtoDto;
         }
 
         

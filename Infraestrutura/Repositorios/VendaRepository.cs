@@ -22,7 +22,7 @@ namespace Infraestrutura.Repositorios
                 conexao.Open();
                 var comando = new NpgsqlCommand($"UPDATE Vendas SET codcliente = @codcliente, dataemissao = @dataemissao, " +
                     $"valor = @valor Where Id = @id", conexao);
-                comando.Parameters.AddWithValue("@codcliente", venda.CodigoCliente);
+                comando.Parameters.AddWithValue("@codcliente", venda.Cliente.Id);
                 comando.Parameters.AddWithValue("@dataemissao", venda.DataEmissao);
                 comando.Parameters.AddWithValue("@valor", venda.Valor);
                 comando.Parameters.AddWithValue("@id", venda.Id);

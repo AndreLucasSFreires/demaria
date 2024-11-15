@@ -95,6 +95,9 @@ namespace DeMaria.Formularios.Vendas
             }
             if (botao == EnumBotoesCadastro.SalvarDoBotaoEditar)
             {
+
+                bool atualizado = _vendaService.AtualizarVenda(vendaAtual);
+
                 btnEditar.Text = textoBotaoEditarDefault;
                 btnNovo.Enabled = true;
                 btnEditar.Enabled = true;
@@ -377,13 +380,19 @@ namespace DeMaria.Formularios.Vendas
         }
         private void ExibirDadosVenda()
         {
-            DefinirCliente(0, carregamentoPorEdicao: true);
+            DefinirCliente(codigoCliente:0, carregamentoPorEdicao: true);
             CarregarGridItensProdutos();
         }
 
         private void dgvVendas_DoubleClick(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabPageLancamento;
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == tabPageVisualizacao)
+                ExibirVendas();
         }
     }
 }
