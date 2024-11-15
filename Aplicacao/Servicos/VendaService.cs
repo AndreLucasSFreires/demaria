@@ -4,6 +4,7 @@ using AutoMapper;
 using Dominio.Entidades;
 using Dominio.Entidades.Interfaces;
 using Entidades.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,6 +19,8 @@ namespace Aplicacao.Servicos
         readonly MapperConfiguration configAutomapper = Mappings.ConfigurarAutoMapper();
         IMapper mapper;
 
+        public string MensagemFalha { get; private set; } = string.Empty;
+
         public VendaService(IVendaRepository vendaRepository, IClienteRepository clienteRepository, IProdutoRepository produtoRepository, IItemVendaRepository itemVendaRepository)
         {
             _vendaRepository = vendaRepository;
@@ -31,8 +34,8 @@ namespace Aplicacao.Servicos
         {
             var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
 
-            var venda = new Venda(vendaDto.Cliente.Id, 
-                cliente, 
+            var venda = new Venda(vendaDto.Cliente.Id,
+                cliente,
                 vendaDto.DataEmissao,
                 vendaDto.Valor);
 
@@ -46,9 +49,9 @@ namespace Aplicacao.Servicos
             var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
             var venda = new Venda
                 (
-                    vendaDto.Id, 
-                    cliente, 
-                    vendaDto.DataEmissao, 
+                    vendaDto.Id,
+                    cliente,
+                    vendaDto.DataEmissao,
                     vendaDto.Valor
                 );
 
@@ -57,7 +60,16 @@ namespace Aplicacao.Servicos
 
         public bool Excluir(int id)
         {
-            return _vendaRepository.Excluir(id);
+            bool retorno = false;
+            try
+            {
+                retorno = _vendaRepository.Excluir(id);
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString();
+            }
+            return retorno;
         }
 
         public List<VendaDto> ObterTodasAsVendas()
@@ -104,7 +116,7 @@ namespace Aplicacao.Servicos
             return produtoDto;
         }
 
-        
-        
+
+
     }
 }

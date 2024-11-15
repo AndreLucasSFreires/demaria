@@ -95,8 +95,12 @@ namespace DeMaria.Formularios.Vendas
             }
             if (botao == EnumBotoesCadastro.SalvarDoBotaoEditar)
             {
-
                 bool atualizado = _vendaService.AtualizarVenda(vendaAtual);
+                if (!atualizado)
+                {
+                    MessageBox.Show("Houve falha na atualização, contate o suporte!");
+                    return;
+                }
 
                 btnEditar.Text = textoBotaoEditarDefault;
                 btnNovo.Enabled = true;
@@ -118,6 +122,16 @@ namespace DeMaria.Formularios.Vendas
                 LimparConteudoGrid();
                 estadoBotaoEditar = EstadoBotao.Default;
                 estadoBotaoNovo = EstadoBotao.Default;
+            }
+            if (botao == EnumBotoesCadastro.Excluir)
+            {
+                var excluido = _vendaService.Excluir(vendaAtual.Id);
+                if (!excluido)
+                {
+                    MessageBox.Show("Houve falha na exclusão, contate o suporte!\r\n\r\n" +
+                        $"{_vendaService.MensagemFalha}", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
         }
 
@@ -393,6 +407,11 @@ namespace DeMaria.Formularios.Vendas
         {
             if (tabControl.SelectedTab == tabPageVisualizacao)
                 ExibirVendas();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            ControlarBotoesTelaCadastro(EnumBotoesCadastro.Excluir);
         }
     }
 }
