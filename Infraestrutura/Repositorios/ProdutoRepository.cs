@@ -9,12 +9,22 @@ namespace Infraestrutura.Repositorios
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        public string connectionString = "Server=127.0.0.1;Port=5432;Database=demaria;User Id=postgres;Password=123;";
-        public const string colunas = "nome, descricao, preco, estoque";
-        public const string parametros = "@nome, @descricao, @preco, @estoque";
+        private const string colunas = "nome, descricao, preco, estoque";
+        private const string parametros = "@nome, @descricao, @preco, @estoque";
+
+        public double ObterQuantidadeVendida(int id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
+            {
+                conexao.Open();
+                var comando = new NpgsqlCommand($"SELECT funcaoquantidadevendida({id})", conexao);
+                return (double)comando.ExecuteScalar();
+            }
+        }
+
         public bool Atualizar(Produto produto)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"UPDATE Produtos SET nome = @nome, descricao = @descricao, preco = " +
@@ -30,7 +40,7 @@ namespace Infraestrutura.Repositorios
 
         public bool Excluir(int id)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"DELETE FROM Produtos Where Id = @id", conexao);
@@ -41,7 +51,7 @@ namespace Infraestrutura.Repositorios
 
         public bool Inserir(Produto produto)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"INSERT INTO Produtos({colunas}) VALUES({parametros})", conexao);
@@ -55,10 +65,11 @@ namespace Infraestrutura.Repositorios
 
         public List<Produto> ObterTodos()
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
-                var comando = new NpgsqlCommand($"SELECT id, {colunas} From Produtos", conexao);
+                var comando = new NpgsqlCommand($"SELECT id, {colunas} " +
+                    $"From Produtos", conexao);
                 var dataReader = comando.ExecuteReader();
                 var produtos = PreencherListagem(dataReader);
                 return produtos;
@@ -67,7 +78,7 @@ namespace Infraestrutura.Repositorios
 
         public Produto ObterProduto(int id)
         {
-            using (NpgsqlConnection conexao = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
                 var comando = new NpgsqlCommand($"SELECT id, {colunas} From Produtos Where Id = @id", conexao);

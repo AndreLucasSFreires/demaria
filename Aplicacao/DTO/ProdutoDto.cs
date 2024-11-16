@@ -1,4 +1,6 @@
-﻿namespace Aplicacao.DTO
+﻿using System.ComponentModel;
+
+namespace Aplicacao.DTO
 {
     public class ProdutoDto
     {

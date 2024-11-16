@@ -46,25 +46,33 @@ namespace Aplicacao.Servicos
 
         public bool AtualizarVenda(VendaDto vendaDto)
         {
-            var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
-            var venda = new Venda
-                (
-                    vendaDto.Id,
-                    cliente,
-                    vendaDto.DataEmissao,
-                    vendaDto.Valor
-                );
-
-            vendaDto.ItensVenda.Select(itemVenda => _itemVendaRepository.Excluir(itemVenda.Id)).ToList();
-            var itensVenda = new List<ItemVenda>();
-            vendaDto.ItensVenda.ForEach(dto =>
+            try
             {
-                itensVenda.Add(mapper.Map<ItemVenda>(dto));
-            });
+                var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
+                var venda = new Venda
+                    (
+                        vendaDto.Id,
+                        cliente,
+                        vendaDto.DataEmissao,
+                        vendaDto.Valor
+                    );
 
-            itensVenda.Select(itemVenda => _itemVendaRepository.Inserir(itemVenda)).ToList();
+                vendaDto.ItensVenda.Select(itemVenda => _itemVendaRepository.Excluir(itemVenda.Id)).ToList();
+                var itensVenda = new List<ItemVenda>();
+                vendaDto.ItensVenda.ForEach(dto =>
+                {
+                    itensVenda.Add(mapper.Map<ItemVenda>(dto));
+                });
 
-            return _vendaRepository.Atualizar(venda);
+                itensVenda.Select(itemVenda => _itemVendaRepository.Inserir(itemVenda)).ToList();
+
+                return _vendaRepository.Atualizar(venda);
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString();
+                return false;
+            }
         }
 
         public bool Excluir(int id)

@@ -158,23 +158,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tblLayCadastro.ColumnCount = 6;
             this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.22691F));
+            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.06841F));
+            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.85861F));
+            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.84036F));
+            this.tblLayCadastro.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.81414F));
             this.tblLayCadastro.Controls.Add(this.lblNome, 0, 0);
-            this.tblLayCadastro.Controls.Add(this.lblPreço, 0, 2);
             this.tblLayCadastro.Controls.Add(this.txtNomeProduto, 0, 1);
-            this.tblLayCadastro.Controls.Add(this.txtPreco, 0, 3);
-            this.tblLayCadastro.Controls.Add(this.lblDescricao, 3, 0);
-            this.tblLayCadastro.Controls.Add(this.txtDescricao, 3, 1);
-            this.tblLayCadastro.Controls.Add(this.lblEstoque, 3, 2);
-            this.tblLayCadastro.Controls.Add(this.txtEstoque, 3, 3);
             this.tblLayCadastro.Controls.Add(this.btnNovo, 0, 4);
             this.tblLayCadastro.Controls.Add(this.btnEditar, 1, 4);
             this.tblLayCadastro.Controls.Add(this.btnExcluir, 2, 4);
             this.tblLayCadastro.Controls.Add(this.btnVoltar, 3, 4);
+            this.tblLayCadastro.Controls.Add(this.lblDescricao, 2, 0);
+            this.tblLayCadastro.Controls.Add(this.txtDescricao, 2, 1);
+            this.tblLayCadastro.Controls.Add(this.txtPreco, 5, 1);
+            this.tblLayCadastro.Controls.Add(this.lblPreço, 5, 0);
+            this.tblLayCadastro.Controls.Add(this.txtEstoque, 0, 3);
+            this.tblLayCadastro.Controls.Add(this.lblEstoque, 0, 2);
             this.tblLayCadastro.Location = new System.Drawing.Point(6, 6);
             this.tblLayCadastro.Name = "tblLayCadastro";
             this.tblLayCadastro.RowCount = 5;
@@ -200,7 +200,7 @@
             // 
             this.lblPreço.AutoSize = true;
             this.lblPreço.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreço.Location = new System.Drawing.Point(3, 86);
+            this.lblPreço.Location = new System.Drawing.Point(714, 0);
             this.lblPreço.Name = "lblPreço";
             this.lblPreço.Size = new System.Drawing.Size(53, 23);
             this.lblPreço.TabIndex = 2;
@@ -210,11 +210,11 @@
             // 
             this.txtNomeProduto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayCadastro.SetColumnSpan(this.txtNomeProduto, 3);
+            this.tblLayCadastro.SetColumnSpan(this.txtNomeProduto, 2);
             this.txtNomeProduto.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeProduto.Location = new System.Drawing.Point(3, 41);
             this.txtNomeProduto.Name = "txtNomeProduto";
-            this.txtNomeProduto.Size = new System.Drawing.Size(432, 30);
+            this.txtNomeProduto.Size = new System.Drawing.Size(254, 30);
             this.txtNomeProduto.TabIndex = 4;
             this.txtNomeProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManipularGerenciamentoPressionamentoTecla);
             // 
@@ -222,11 +222,10 @@
             // 
             this.txtPreco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayCadastro.SetColumnSpan(this.txtPreco, 3);
             this.txtPreco.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPreco.Location = new System.Drawing.Point(3, 114);
+            this.txtPreco.Location = new System.Drawing.Point(714, 41);
             this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(432, 30);
+            this.txtPreco.Size = new System.Drawing.Size(160, 30);
             this.txtPreco.TabIndex = 6;
             this.txtPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManipularGerenciamentoPressionamentoTecla);
             // 
@@ -234,7 +233,7 @@
             // 
             this.lblDescricao.AutoSize = true;
             this.lblDescricao.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricao.Location = new System.Drawing.Point(441, 0);
+            this.lblDescricao.Location = new System.Drawing.Point(263, 0);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(83, 23);
             this.lblDescricao.TabIndex = 1;
@@ -246,17 +245,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tblLayCadastro.SetColumnSpan(this.txtDescricao, 3);
             this.txtDescricao.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricao.Location = new System.Drawing.Point(441, 41);
+            this.txtDescricao.Location = new System.Drawing.Point(263, 41);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(433, 30);
+            this.txtDescricao.Size = new System.Drawing.Size(445, 30);
             this.txtDescricao.TabIndex = 5;
             this.txtDescricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManipularGerenciamentoPressionamentoTecla);
             // 
             // lblEstoque
             // 
             this.lblEstoque.AutoSize = true;
+            this.tblLayCadastro.SetColumnSpan(this.lblEstoque, 2);
             this.lblEstoque.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstoque.Location = new System.Drawing.Point(441, 86);
+            this.lblEstoque.Location = new System.Drawing.Point(3, 86);
             this.lblEstoque.Name = "lblEstoque";
             this.lblEstoque.Size = new System.Drawing.Size(71, 23);
             this.lblEstoque.TabIndex = 3;
@@ -266,12 +266,13 @@
             // 
             this.txtEstoque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayCadastro.SetColumnSpan(this.txtEstoque, 3);
+            this.tblLayCadastro.SetColumnSpan(this.txtEstoque, 2);
             this.txtEstoque.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstoque.Location = new System.Drawing.Point(441, 114);
+            this.txtEstoque.Location = new System.Drawing.Point(3, 114);
             this.txtEstoque.Name = "txtEstoque";
-            this.txtEstoque.Size = new System.Drawing.Size(433, 30);
+            this.txtEstoque.Size = new System.Drawing.Size(254, 30);
             this.txtEstoque.TabIndex = 7;
+            this.txtEstoque.TextChanged += new System.EventHandler(this.txtEstoque_TextChanged);
             this.txtEstoque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManipularGerenciamentoPressionamentoTecla);
             // 
             // btnNovo
@@ -282,7 +283,7 @@
             this.btnNovo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovo.Location = new System.Drawing.Point(3, 415);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(140, 45);
+            this.btnNovo.Size = new System.Drawing.Size(139, 45);
             this.btnNovo.TabIndex = 8;
             this.btnNovo.Text = "&Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -294,9 +295,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(149, 415);
+            this.btnEditar.Location = new System.Drawing.Point(148, 415);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(140, 45);
+            this.btnEditar.Size = new System.Drawing.Size(109, 45);
             this.btnEditar.TabIndex = 9;
             this.btnEditar.Text = "&Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -308,9 +309,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExcluir.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluir.Location = new System.Drawing.Point(295, 415);
+            this.btnExcluir.Location = new System.Drawing.Point(263, 415);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(140, 45);
+            this.btnExcluir.Size = new System.Drawing.Size(169, 45);
             this.btnExcluir.TabIndex = 10;
             this.btnExcluir.Text = "&Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -322,9 +323,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVoltar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.Location = new System.Drawing.Point(441, 415);
+            this.btnVoltar.Location = new System.Drawing.Point(438, 415);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(140, 45);
+            this.btnVoltar.Size = new System.Drawing.Size(97, 45);
             this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;

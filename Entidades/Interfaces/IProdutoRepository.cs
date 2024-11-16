@@ -9,5 +9,6 @@ namespace Dominio.Entidades.Interfaces
         bool Excluir(int id);
         List<Produto> ObterTodos();
         Produto ObterProduto(int id);
+        double ObterQuantidadeVendida(int id);
     }
 }

@@ -32,6 +32,8 @@ namespace DeMaria.Formularios.Vendas
 
         public VendaDto IniciarNovaVenda()
         {
+            clienteSelecionado = null;
+            produtosSelecionado = null;
             return new VendaDto { DataEmissao = DateTime.Now };
         }
 
@@ -127,29 +129,38 @@ namespace DeMaria.Formularios.Vendas
             {
                 var excluido = _vendaService.Excluir(vendaAtual.Id);
                 if (!excluido)
-                {
-                    MessageBox.Show("Houve falha na exclusão, contate o suporte!\r\n\r\n" +
-                        $"{_vendaService.MensagemFalha}", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                    ExibirMensagemQuandoHouverFalha();
             }
+        }
+
+        private bool ExibirMensagemQuandoHouverFalha(string mensagemAdicional = "")
+        {
+            MessageBox.Show($"Houve falha, contate o suporte!\r\n\r\nExcecao: {mensagemAdicional}\r\n" +
+                        $"{_vendaService.MensagemFalha}", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return false;
         }
 
         private bool GravarVenda()
         {
-            bool vendaInserida = _vendaService.InserirVenda(vendaAtual);
-
-            if (!vendaInserida)
+            try
             {
-                MessageBox.Show("Venda não foi gravada, entre em contato com o suporte");
+                bool vendaInserida = _vendaService.InserirVenda(vendaAtual);
+                if (vendaInserida)
+                {
+                    foreach (var item in vendaAtual.ItensVenda)
+                        _itemVendaService.InserirItemVenda(item);
+
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                foreach (var item in vendaAtual.ItensVenda)
+                    _itemVendaService.ExcluirItemVenda(item.Id);
+
+                ExibirMensagemQuandoHouverFalha(e.Message.ToString());
                 return false;
             }
-
-            foreach (var item in vendaAtual.ItensVenda)
-            {
-                _itemVendaService.InserirItemVenda(item);
-            }
-            return true;
         }
 
         private void LimparConteudoControlesCliente()
@@ -394,7 +405,7 @@ namespace DeMaria.Formularios.Vendas
         }
         private void ExibirDadosVenda()
         {
-            DefinirCliente(codigoCliente:0, carregamentoPorEdicao: true);
+            DefinirCliente(codigoCliente: 0, carregamentoPorEdicao: true);
             CarregarGridItensProdutos();
         }
 

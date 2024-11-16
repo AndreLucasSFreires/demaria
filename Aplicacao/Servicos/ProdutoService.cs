@@ -36,6 +36,12 @@ namespace Aplicacao.Servicos
             return _produtoRepository.Excluir(id);
         }
 
+        public double ObterQuantidadeVendida(int id)
+        {
+            var quantidadeVendida = _produtoRepository.ObterQuantidadeVendida(id);
+            return quantidadeVendida;
+        }
+
         public List<ProdutoDto> ObterTodos()
         {
             var produtosDto = new List<ProdutoDto>();

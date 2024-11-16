@@ -306,13 +306,39 @@ namespace DeMaria.Formularios.Produtos
             if (produtoSelecionado == null) return;
             txtNomeProduto.Text = produtoSelecionado.Nome;
             txtDescricao.Text = produtoSelecionado.Descricao;
-            txtPreco.Text = produtoSelecionado.Preco.ToString();
-            txtEstoque.Text = produtoSelecionado.Estoque.ToString();
+            txtPreco.Text = produtoSelecionado.Preco.ToString("N2");
+            txtEstoque.Text = produtoSelecionado.Estoque.ToString("N2");
         }
 
         private void dgvProdutosListagem_DoubleClick(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabPageCadastro;
         }
+
+        private void txtSaldoEstoque_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void txtSaldoEstoquePrevisao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void txtEstoque_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void TravarDigitacao(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
     }
 }
