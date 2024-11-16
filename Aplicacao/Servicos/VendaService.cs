@@ -55,6 +55,15 @@ namespace Aplicacao.Servicos
                     vendaDto.Valor
                 );
 
+            vendaDto.ItensVenda.Select(itemVenda => _itemVendaRepository.Excluir(itemVenda.Id)).ToList();
+            var itensVenda = new List<ItemVenda>();
+            vendaDto.ItensVenda.ForEach(dto =>
+            {
+                itensVenda.Add(mapper.Map<ItemVenda>(dto));
+            });
+
+            itensVenda.Select(itemVenda => _itemVendaRepository.Inserir(itemVenda)).ToList();
+
             return _vendaRepository.Atualizar(venda);
         }
 

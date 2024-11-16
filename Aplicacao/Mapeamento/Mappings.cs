@@ -17,7 +17,8 @@ namespace Aplicacao.Mapeamento
             {
                 cfg.CreateMap<ItemVenda, ItemVendaDto>()
                     .ForMember(dest => dest.ProdutoDto, map => map.MapFrom(src => src.Produto))
-                    .ForMember(dest => dest.Venda, map => map.MapFrom(src => src.Venda));
+                    .ForMember(dest => dest.Venda, map => map.MapFrom(src => src.Venda))
+                    .ForPath(dest => dest.Venda.Id, map => map.MapFrom(src => src.CodigoVenda));
 
                 cfg.CreateMap<Produto, ProdutoDto>();
 
