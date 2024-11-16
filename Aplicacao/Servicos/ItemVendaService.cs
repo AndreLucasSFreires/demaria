@@ -33,6 +33,10 @@ namespace Aplicacao.Servicos
             return _itemVendaRepository.Inserir(itemVenda);
         }
 
+        public bool ExcluirItensPorVenda(int idVenda)
+        {
+            return _itemVendaRepository.ExcluirItensPorVenda(idVenda);
+        }
         
         public void ExcluirItemVenda(int id)
         {

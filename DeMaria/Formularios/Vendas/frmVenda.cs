@@ -149,14 +149,13 @@ namespace DeMaria.Formularios.Vendas
                 {
                     foreach (var item in vendaAtual.ItensVenda)
                         _itemVendaService.InserirItemVenda(item);
-
                 }
                 return true;
             }
             catch (Exception e)
             {
-                foreach (var item in vendaAtual.ItensVenda)
-                    _itemVendaService.ExcluirItemVenda(item.Id);
+                _itemVendaService.ExcluirItensPorVenda(vendaAtual.Id);
+                _vendaService.Excluir(vendaAtual.Id);
 
                 ExibirMensagemQuandoHouverFalha(e.Message.ToString());
                 return false;

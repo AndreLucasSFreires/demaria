@@ -8,5 +8,6 @@ namespace Entidades.Interfaces
         bool Inserir(ItemVenda itemVenda);
         bool Excluir(int id);
         List<ItemVenda> ObterTodosPorVenda(int id);
+        bool ExcluirItensPorVenda(int idVenda);
     }
 }

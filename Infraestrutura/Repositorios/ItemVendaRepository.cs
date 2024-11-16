@@ -11,6 +11,17 @@ namespace Infraestrutura.Repositorios
         public const string colunas = "codvenda, codproduto, valorunitario, quantidade, valortotal";
         public const string parametros = "@codvenda, @codproduto, @valorunitario, @quantidade, @valortotal";
 
+        public bool ExcluirItensPorVenda(int idVenda)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
+            {
+                conexao.Open();
+                var comando = new NpgsqlCommand($"DELETE FROM Itensvenda Where codvenda = @codvenda", conexao);
+                comando.Parameters.AddWithValue("@codvenda", idVenda);
+                return comando.ExecuteNonQuery() > 0;
+            }
+        }
+
         public bool Excluir(int id)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
