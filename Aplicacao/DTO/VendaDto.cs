@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Aplicacao.DTO
 {
@@ -8,6 +9,7 @@ namespace Aplicacao.DTO
         public int Id { get; set; }
         public ClienteDto Cliente { get; set; }
 
+        [Browsable(false)]
         public string NomeCliente
         {
             get {return Cliente.Nome; }

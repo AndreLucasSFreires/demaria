@@ -31,6 +31,13 @@
             this.tblLayCabecalho = new System.Windows.Forms.TableLayoutPanel();
             this.tblLancamento = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProdutosLancamento = new System.Windows.Forms.DataGridView();
+            this.colDgvProdutosLancamentoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProdutosLancamentoColCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProdutosLancamentoColNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgvProdutosLancamentoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayProdutos = new System.Windows.Forms.TableLayoutPanel();
             this.lblNomeProduto = new System.Windows.Forms.Label();
             this.txtCodProd = new System.Windows.Forms.TextBox();
@@ -111,13 +118,6 @@
             this.dgvVendasColClienteDataEmissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvVendasColValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageLancamento = new System.Windows.Forms.TabPage();
-            this.colDgvProdutosLancamentoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvProdutosLancamentoColCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvProdutosLancamentoColNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgvProdutosLancamentoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayCabecalho.SuspendLayout();
             this.tblLancamento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutosLancamento)).BeginInit();
@@ -223,6 +223,55 @@
             this.dgvProdutosLancamento.ShowRowErrors = false;
             this.dgvProdutosLancamento.Size = new System.Drawing.Size(1421, 366);
             this.dgvProdutosLancamento.TabIndex = 47;
+            // 
+            // colDgvProdutosLancamentoId
+            // 
+            this.colDgvProdutosLancamentoId.DataPropertyName = "Id";
+            this.colDgvProdutosLancamentoId.HeaderText = "Id";
+            this.colDgvProdutosLancamentoId.Name = "colDgvProdutosLancamentoId";
+            this.colDgvProdutosLancamentoId.Visible = false;
+            // 
+            // colDgvProdutosLancamento
+            // 
+            this.colDgvProdutosLancamento.DataPropertyName = "CodigoVenda";
+            this.colDgvProdutosLancamento.HeaderText = "CodigoVenda";
+            this.colDgvProdutosLancamento.Name = "colDgvProdutosLancamento";
+            this.colDgvProdutosLancamento.Visible = false;
+            // 
+            // dgvProdutosLancamentoColCodigo
+            // 
+            this.dgvProdutosLancamentoColCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvProdutosLancamentoColCodigo.DataPropertyName = "CodigoProduto";
+            this.dgvProdutosLancamentoColCodigo.HeaderText = "Codigo do Produto";
+            this.dgvProdutosLancamentoColCodigo.Name = "dgvProdutosLancamentoColCodigo";
+            // 
+            // dgvProdutosLancamentoColNomeProduto
+            // 
+            this.dgvProdutosLancamentoColNomeProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvProdutosLancamentoColNomeProduto.DataPropertyName = "NomeProduto";
+            this.dgvProdutosLancamentoColNomeProduto.HeaderText = "Nome do Produto";
+            this.dgvProdutosLancamentoColNomeProduto.Name = "dgvProdutosLancamentoColNomeProduto";
+            // 
+            // colDgvProdutosLancamentoQuantidade
+            // 
+            this.colDgvProdutosLancamentoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoQuantidade.DataPropertyName = "Quantidade";
+            this.colDgvProdutosLancamentoQuantidade.HeaderText = "Quantidade";
+            this.colDgvProdutosLancamentoQuantidade.Name = "colDgvProdutosLancamentoQuantidade";
+            // 
+            // colDgvProdutosLancamentoUnitario
+            // 
+            this.colDgvProdutosLancamentoUnitario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoUnitario.DataPropertyName = "ValorUnitario";
+            this.colDgvProdutosLancamentoUnitario.HeaderText = "Unitario";
+            this.colDgvProdutosLancamentoUnitario.Name = "colDgvProdutosLancamentoUnitario";
+            // 
+            // colDgvProdutosLancamentoTotal
+            // 
+            this.colDgvProdutosLancamentoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDgvProdutosLancamentoTotal.DataPropertyName = "ValorTotal";
+            this.colDgvProdutosLancamentoTotal.HeaderText = "Total";
+            this.colDgvProdutosLancamentoTotal.Name = "colDgvProdutosLancamentoTotal";
             // 
             // tblLayProdutos
             // 
@@ -1099,55 +1148,6 @@
             this.tabPageLancamento.TabIndex = 1;
             this.tabPageLancamento.Text = "F2 - Lançamento e visualização";
             this.tabPageLancamento.UseVisualStyleBackColor = true;
-            // 
-            // colDgvProdutosLancamentoId
-            // 
-            this.colDgvProdutosLancamentoId.DataPropertyName = "Id";
-            this.colDgvProdutosLancamentoId.HeaderText = "Id";
-            this.colDgvProdutosLancamentoId.Name = "colDgvProdutosLancamentoId";
-            this.colDgvProdutosLancamentoId.Visible = false;
-            // 
-            // colDgvProdutosLancamento
-            // 
-            this.colDgvProdutosLancamento.DataPropertyName = "CodigoVenda";
-            this.colDgvProdutosLancamento.HeaderText = "CodigoVenda";
-            this.colDgvProdutosLancamento.Name = "colDgvProdutosLancamento";
-            this.colDgvProdutosLancamento.Visible = false;
-            // 
-            // dgvProdutosLancamentoColCodigo
-            // 
-            this.dgvProdutosLancamentoColCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvProdutosLancamentoColCodigo.DataPropertyName = "CodigoProduto";
-            this.dgvProdutosLancamentoColCodigo.HeaderText = "Codigo do Produto";
-            this.dgvProdutosLancamentoColCodigo.Name = "dgvProdutosLancamentoColCodigo";
-            // 
-            // dgvProdutosLancamentoColNomeProduto
-            // 
-            this.dgvProdutosLancamentoColNomeProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvProdutosLancamentoColNomeProduto.DataPropertyName = "NomeProduto";
-            this.dgvProdutosLancamentoColNomeProduto.HeaderText = "Nome do Produto";
-            this.dgvProdutosLancamentoColNomeProduto.Name = "dgvProdutosLancamentoColNomeProduto";
-            // 
-            // colDgvProdutosLancamentoQuantidade
-            // 
-            this.colDgvProdutosLancamentoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoQuantidade.DataPropertyName = "Quantidade";
-            this.colDgvProdutosLancamentoQuantidade.HeaderText = "Quantidade";
-            this.colDgvProdutosLancamentoQuantidade.Name = "colDgvProdutosLancamentoQuantidade";
-            // 
-            // colDgvProdutosLancamentoUnitario
-            // 
-            this.colDgvProdutosLancamentoUnitario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoUnitario.DataPropertyName = "ValorUnitario";
-            this.colDgvProdutosLancamentoUnitario.HeaderText = "Unitario";
-            this.colDgvProdutosLancamentoUnitario.Name = "colDgvProdutosLancamentoUnitario";
-            // 
-            // colDgvProdutosLancamentoTotal
-            // 
-            this.colDgvProdutosLancamentoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDgvProdutosLancamentoTotal.DataPropertyName = "ValorTotal";
-            this.colDgvProdutosLancamentoTotal.HeaderText = "Total";
-            this.colDgvProdutosLancamentoTotal.Name = "colDgvProdutosLancamentoTotal";
             // 
             // frmVenda
             // 

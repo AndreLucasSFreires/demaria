@@ -127,9 +127,18 @@ namespace DeMaria.Formularios.Vendas
             }
             if (botao == EnumBotoesCadastro.Excluir)
             {
+                var itensExcluidos = _itemVendaService.ExcluirItensPorVenda(vendaAtual.Id);
                 var excluido = _vendaService.Excluir(vendaAtual.Id);
+
                 if (!excluido)
                     ExibirMensagemQuandoHouverFalha();
+
+                if (itensExcluidos && excluido)
+                {
+                    MessageBox.Show("Venda excluída com sucesso!");
+                    LimparConteudoControlesCliente();
+                    LimparConteudoGrid();
+                }
             }
         }
 
@@ -169,6 +178,8 @@ namespace DeMaria.Formularios.Vendas
             txtEndereco.Clear();
             txtEmail.Clear();
             txtTelefone.Clear();
+            txtDoc.Clear();
+            txtTotalDocumento.Clear();
         }
 
         private void LimparConteudoControlesProduto()
@@ -406,6 +417,8 @@ namespace DeMaria.Formularios.Vendas
         {
             DefinirCliente(codigoCliente: 0, carregamentoPorEdicao: true);
             CarregarGridItensProdutos();
+            txtDoc.Text = vendaAtual.Id.ToString("00000");
+            txtTotalDocumento.Text = vendaAtual.Valor.ToString("N2");
         }
 
         private void dgvVendas_DoubleClick(object sender, EventArgs e)
