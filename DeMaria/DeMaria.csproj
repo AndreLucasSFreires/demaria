@@ -93,6 +93,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relatorios\Clientes\frmRelatorioClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios\Clientes\frmRelatorioClientes.Designer.cs">
+      <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Relatorios\Vendas\dsVendas.cs">
       <DependentUpon>dsVendas.xsd</DependentUpon>
     </Compile>
@@ -129,11 +135,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Relatorios\Clientes\frmRelatorioClientes.resx">
+      <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Clientes\reportClientes.rdlc" />
     <EmbeddedResource Include="Relatorios\Vendas\frmRelatorioVendas.resx">
       <DependentUpon>frmRelatorioVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Relatorios\Vendas\reportVendas.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Aplicacao.DTO.ClienteDto.datasource" />
     <None Include="Properties\DataSources\Aplicacao.DTO.ItemVendaDto.datasource" />
     <None Include="Properties\DataSources\Aplicacao.DTO.VendaDto.datasource" />
     <None Include="Properties\Settings.settings">

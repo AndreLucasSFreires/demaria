@@ -31,7 +31,8 @@
             this.btnFormularioClientes = new System.Windows.Forms.Button();
             this.btnFormularioProdutos = new System.Windows.Forms.Button();
             this.btnFormularioVendas = new System.Windows.Forms.Button();
-            this.btnFormularioRelatorios = new System.Windows.Forms.Button();
+            this.btnRelatorioVendas = new System.Windows.Forms.Button();
+            this.btnRelatorioClientes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFormularioClientes
@@ -67,23 +68,35 @@
             this.btnFormularioVendas.UseVisualStyleBackColor = true;
             this.btnFormularioVendas.Click += new System.EventHandler(this.btnFormularioVendas_Click);
             // 
-            // btnFormularioRelatorios
+            // btnRelatorioVendas
             // 
-            this.btnFormularioRelatorios.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFormularioRelatorios.Location = new System.Drawing.Point(163, 126);
-            this.btnFormularioRelatorios.Name = "btnFormularioRelatorios";
-            this.btnFormularioRelatorios.Size = new System.Drawing.Size(126, 98);
-            this.btnFormularioRelatorios.TabIndex = 3;
-            this.btnFormularioRelatorios.Text = "&Relatórios";
-            this.btnFormularioRelatorios.UseVisualStyleBackColor = true;
-            this.btnFormularioRelatorios.Click += new System.EventHandler(this.btnFormularioRelatorios_Click);
+            this.btnRelatorioVendas.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRelatorioVendas.Location = new System.Drawing.Point(420, 18);
+            this.btnRelatorioVendas.Name = "btnRelatorioVendas";
+            this.btnRelatorioVendas.Size = new System.Drawing.Size(126, 98);
+            this.btnRelatorioVendas.TabIndex = 3;
+            this.btnRelatorioVendas.Text = "Relatório&s Vendas ";
+            this.btnRelatorioVendas.UseVisualStyleBackColor = true;
+            this.btnRelatorioVendas.Click += new System.EventHandler(this.btnFormularioRelatorios_Click);
+            // 
+            // btnRelatorioClientes
+            // 
+            this.btnRelatorioClientes.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRelatorioClientes.Location = new System.Drawing.Point(552, 18);
+            this.btnRelatorioClientes.Name = "btnRelatorioClientes";
+            this.btnRelatorioClientes.Size = new System.Drawing.Size(126, 98);
+            this.btnRelatorioClientes.TabIndex = 4;
+            this.btnRelatorioClientes.Text = "Relatórios C&lientes";
+            this.btnRelatorioClientes.UseVisualStyleBackColor = true;
+            this.btnRelatorioClientes.Click += new System.EventHandler(this.btnRelatorioClientes_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 388);
-            this.Controls.Add(this.btnFormularioRelatorios);
+            this.Controls.Add(this.btnRelatorioClientes);
+            this.Controls.Add(this.btnRelatorioVendas);
             this.Controls.Add(this.btnFormularioVendas);
             this.Controls.Add(this.btnFormularioProdutos);
             this.Controls.Add(this.btnFormularioClientes);
@@ -99,7 +112,8 @@
         private System.Windows.Forms.Button btnFormularioClientes;
         private System.Windows.Forms.Button btnFormularioProdutos;
         private System.Windows.Forms.Button btnFormularioVendas;
-        private System.Windows.Forms.Button btnFormularioRelatorios;
+        private System.Windows.Forms.Button btnRelatorioVendas;
+        private System.Windows.Forms.Button btnRelatorioClientes;
     }
 }
 
