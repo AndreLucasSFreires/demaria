@@ -115,8 +115,5 @@ namespace Aplicacao.Servicos
             var produtoDto = mapper.Map<ProdutoDto>(produto);
             return produtoDto;
         }
-
-
-
     }
 }

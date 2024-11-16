@@ -4,6 +4,7 @@ using Aplicacao.Servicos;
 using DeMaria.Formularios.Clientes;
 using DeMaria.Formularios.Produtos;
 using DeMaria.Formularios.Vendas;
+using DeMaria.Relatorios.Vendas;
 using Infraestrutura.Repositorios;
 
 namespace DeMaria
@@ -14,6 +15,7 @@ namespace DeMaria
         ProdutoRepository ProdutoRepository = new ProdutoRepository();
         VendaRepository VendaRepository = new VendaRepository();
         ItemVendaRepository ItemVendaRepository = new ItemVendaRepository();
+
 
         public frmMain()
         {
@@ -36,13 +38,26 @@ namespace DeMaria
 
         private void btnFormularioVendas_Click(object sender, EventArgs e)
         {
-            var vendaService = new VendaService(VendaRepository, 
-                ClienteRepository, ProdutoRepository, ItemVendaRepository);
+            var vendaService = ObterVendaService();
 
             var itemVendaService = new ItemVendaService(ItemVendaRepository);
 
             frmVenda frmVenda = new frmVenda(vendaService, itemVendaService);
             frmVenda.ShowDialog();
+        }
+
+        private VendaService ObterVendaService()
+        {
+            VendaService vendaService = new VendaService(VendaRepository,
+                ClienteRepository, ProdutoRepository, ItemVendaRepository);
+            return vendaService;
+        }
+
+        private void btnFormularioRelatorios_Click(object sender, EventArgs e)
+        {
+            var vendaService = ObterVendaService();
+            var relatorioVendas = new frmRelatorioVendas(vendaService);
+            relatorioVendas.ShowDialog();
         }
     }
 }

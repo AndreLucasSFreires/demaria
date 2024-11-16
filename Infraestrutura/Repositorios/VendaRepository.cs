@@ -15,6 +15,7 @@ namespace Infraestrutura.Repositorios
     {
         public const string colunas = "codcliente, dataemissao, valor";
         public const string parametros = "@codcliente, @dataemissao, @valor";
+
         public bool Atualizar(Venda venda)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))

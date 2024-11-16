@@ -48,7 +48,7 @@
             // btnFormularioProdutos
             // 
             this.btnFormularioProdutos.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFormularioProdutos.Location = new System.Drawing.Point(12, 132);
+            this.btnFormularioProdutos.Location = new System.Drawing.Point(163, 12);
             this.btnFormularioProdutos.Name = "btnFormularioProdutos";
             this.btnFormularioProdutos.Size = new System.Drawing.Size(126, 104);
             this.btnFormularioProdutos.TabIndex = 1;
@@ -59,7 +59,7 @@
             // btnFormularioVendas
             // 
             this.btnFormularioVendas.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFormularioVendas.Location = new System.Drawing.Point(191, 12);
+            this.btnFormularioVendas.Location = new System.Drawing.Point(12, 126);
             this.btnFormularioVendas.Name = "btnFormularioVendas";
             this.btnFormularioVendas.Size = new System.Drawing.Size(126, 98);
             this.btnFormularioVendas.TabIndex = 2;
@@ -70,12 +70,13 @@
             // btnFormularioRelatorios
             // 
             this.btnFormularioRelatorios.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFormularioRelatorios.Location = new System.Drawing.Point(191, 138);
+            this.btnFormularioRelatorios.Location = new System.Drawing.Point(163, 126);
             this.btnFormularioRelatorios.Name = "btnFormularioRelatorios";
             this.btnFormularioRelatorios.Size = new System.Drawing.Size(126, 98);
             this.btnFormularioRelatorios.TabIndex = 3;
             this.btnFormularioRelatorios.Text = "&Relatórios";
             this.btnFormularioRelatorios.UseVisualStyleBackColor = true;
+            this.btnFormularioRelatorios.Click += new System.EventHandler(this.btnFormularioRelatorios_Click);
             // 
             // frmMain
             // 

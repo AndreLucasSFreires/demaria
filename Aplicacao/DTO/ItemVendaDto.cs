@@ -9,6 +9,22 @@ namespace Aplicacao.DTO
 
         public int Id { get; set; }
 
+        [Browsable(false)]
+        public int IdVenda
+        {
+            get
+            {
+                try
+                {
+                    return Venda.Id;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
+
         public double Quantidade { get; set; }
 
         public double ValorUnitario { get; set; }
