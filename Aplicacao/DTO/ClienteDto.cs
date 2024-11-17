@@ -8,6 +8,12 @@
         public string Endereco { get; set; }
         public string Email { get; set; }
 
+        public bool EhValido()
+        {
+            return Nome.Length > 2 &&
+                Telefone.Length > 8;
+        }
+
         public override string ToString()
         {
             return Nome;

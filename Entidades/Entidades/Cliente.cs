@@ -17,5 +17,10 @@
             Endereco = endereco;
             Email = email;
         }
+
+        public bool EhValido()
+        {
+            return Nome.Length > 2;
+        }
     }
 }
