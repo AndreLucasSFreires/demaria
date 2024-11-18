@@ -8,6 +8,18 @@ namespace AplicacaoTests.Servicos
 {
     public partial class DadosBogus
     {
+        public static VendaDto GerarVendaDtoInvalido()
+        {
+            var vendaDto = new VendaDto
+            {
+                Cliente = GerarClienteDtoValido(),
+                DataEmissao = DateTime.Now,
+            };
+
+            vendaDto.Valor = vendaDto.ItensVenda.Sum(i => i.ValorTotal);
+            return vendaDto;
+        }
+
         public static VendaDto GerarVendaDtoValido()
         {
             var vendaDto = new VendaDto

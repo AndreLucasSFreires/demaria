@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Bogus.DataSets;
 using Dominio.Entidades;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,25 +12,19 @@ namespace DominioTests
     public class ClienteTests
     {
         [Fact]
-        public void ClienteNovoDeveEstarValido()
+        public void ClienteNovoDeveEstarInvalido()
         {
-            var cliente = GerarClienteValido();
+            var cliente = DadosBogus.GerarClienteInvalido();
             var result = cliente.EhValido();
-            Assert.True(result);
+            result.Should().BeFalse();
         }
 
-        private Cliente GerarClienteValido()
+        [Fact]
+        public void ClienteNovoDeveEstarValido()
         {
-            var genero = new Faker().PickRandom<Name.Gender>();
-            var cliente = new Faker<Cliente>(locale: "pt_BR").
-                CustomInstantiator(f => new Cliente(
-                    f.Name.FirstName(genero),
-                    f.Phone.PhoneNumber(),
-                    f.Address.StreetName(),
-                    ""))
-                    .RuleFor(c => c.Email, (f, c) =>
-                     f.Internet.Email(c.Nome.ToLower()));
-            return cliente;
+            var cliente = DadosBogus.GerarClienteValido();
+            var result = cliente.EhValido();
+            result.Should().BeTrue();
         }
     }
 }

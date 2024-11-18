@@ -32,6 +32,18 @@ namespace Aplicacao.Servicos
 
         public bool InserirVenda(VendaDto vendaDto)
         {
+            var validacao = new ValidacaoVendaDto();
+            var resultadoValidacao = validacao.Validate(vendaDto);
+
+            string mensagensValidacao = string.Empty;
+            if (!resultadoValidacao.IsValid)
+            {
+                resultadoValidacao
+                    .Errors
+                    .Select(x => mensagensValidacao += $"{x.ErrorMessage}\r\n").ToList();
+                throw new Exception($"Falhas de validação:\r\n{mensagensValidacao}");
+            }
+
             try
             {
                 var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
