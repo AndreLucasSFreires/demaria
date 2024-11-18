@@ -52,7 +52,6 @@ namespace Aplicacao.Servicos
                 {
                     Id = itemVenda.Id,
                     Quantidade = itemVenda.Quantidade,
-                    ValorTotal = itemVenda.ValorTotal,
                     ValorUnitario = itemVenda.ValorUnitario
                 });
             }

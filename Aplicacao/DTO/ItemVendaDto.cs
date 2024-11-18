@@ -5,8 +5,8 @@ namespace Aplicacao.DTO
 {
     public class ItemVendaDto
     {
-        private double _valorTotal;
-
+        private double _quantidade;
+        private double _valorUnitario;
         public int Id { get; set; }
 
         [Browsable(false)]
@@ -25,14 +25,21 @@ namespace Aplicacao.DTO
             }
         }
 
-        public double Quantidade { get; set; }
+        public double Quantidade
+        {
+            get { return _quantidade; }
+            set { _quantidade = Math.Round(value, 2); }
+        }
 
-        public double ValorUnitario { get; set; }
+        public double ValorUnitario
+        {
+            get { return _valorUnitario; }
+            set { _valorUnitario = Math.Round(value, 2); }
+        }
 
         public double ValorTotal
         {
-            get { return Math.Round(_valorTotal, 2); }
-            set { _valorTotal = value; }
+            get { return Math.Round(Quantidade * ValorUnitario,2); }
         }
 
         [Browsable(false)]

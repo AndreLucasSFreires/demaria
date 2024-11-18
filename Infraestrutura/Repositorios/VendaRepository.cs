@@ -42,9 +42,9 @@ namespace Infraestrutura.Repositorios
             }
         }
 
-        public bool Inserir(Venda venda, out int idInserido)
+        public int Inserir(Venda venda)
         {
-            bool inserido = false;
+            int idInserido = 0;
             using (NpgsqlConnection conexao = new NpgsqlConnection(Informacoes.connectionString))
             {
                 conexao.Open();
@@ -52,10 +52,10 @@ namespace Infraestrutura.Repositorios
                 comando.Parameters.AddWithValue("@codcliente", venda.Cliente.Id);
                 comando.Parameters.AddWithValue("@dataemissao", venda.DataEmissao);
                 comando.Parameters.AddWithValue("@valor", venda.Valor);
-                inserido = comando.ExecuteNonQuery() > 0;
+                comando.ExecuteNonQuery();
                 idInserido = ObterUltimoIdInserido();
             }
-            return inserido;
+            return idInserido;
         }
 
         private int ObterUltimoIdInserido()

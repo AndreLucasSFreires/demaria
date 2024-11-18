@@ -5,7 +5,7 @@ namespace Entidades.Interfaces
 {
     public interface IVendaRepository
     {
-        bool Inserir(Venda venda, out int idInserido);
+        int Inserir(Venda venda);
         bool Atualizar(Venda venda);
         bool Excluir(int id);
         List<Venda> ObterTodasAsVendas();

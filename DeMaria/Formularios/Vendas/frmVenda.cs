@@ -376,7 +376,6 @@ namespace DeMaria.Formularios.Vendas
                 ValorUnitario = ObterValorUnitarioLancamento(),
                 Venda = vendaAtual
             };
-            itemVendaDto.ValorTotal = itemVendaDto.Quantidade * itemVendaDto.ValorUnitario;
             return itemVendaDto;
         }
 

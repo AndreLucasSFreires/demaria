@@ -32,16 +32,22 @@ namespace Aplicacao.Servicos
 
         public bool InserirVenda(VendaDto vendaDto)
         {
-            var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
+            try
+            {
+                var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
+                var venda = new Venda(vendaDto.Cliente.Id,
+                    cliente,
+                    vendaDto.DataEmissao,
+                    vendaDto.Valor);
 
-            var venda = new Venda(vendaDto.Cliente.Id,
-                cliente,
-                vendaDto.DataEmissao,
-                vendaDto.Valor);
-
-            bool inserido = _vendaRepository.Inserir(venda, out var idInserido);
-            vendaDto.Id = idInserido;
-            return inserido;
+                vendaDto.Id = _vendaRepository.Inserir(venda);
+                return vendaDto.Id > 0;
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString();
+                return false;
+            }
         }
 
         public bool AtualizarVenda(VendaDto vendaDto)
@@ -50,12 +56,12 @@ namespace Aplicacao.Servicos
             {
                 var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
                 var venda = new Venda
-                    (
-                        vendaDto.Id,
-                        cliente,
-                        vendaDto.DataEmissao,
-                        vendaDto.Valor
-                    );
+                (
+                    vendaDto.Id,
+                    cliente,
+                    vendaDto.DataEmissao,
+                    vendaDto.Valor
+                );
 
                 vendaDto.ItensVenda.Select(itemVenda => _itemVendaRepository.Excluir(itemVenda.Id)).ToList();
                 var itensVenda = new List<ItemVenda>();
