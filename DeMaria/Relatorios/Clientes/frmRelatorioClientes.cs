@@ -26,6 +26,12 @@ namespace DeMaria.Relatorios.Clientes
         {
             reportViewer1.LocalReport.DataSources.Clear();
             var clientes = _clienteService.ObterTodos();
+
+            if (!clientes.Any())
+                MessageBox.Show("Não há nenhum cliente cadastrado",
+                    "Relatório de Clientes",
+                    MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+
             var clientesDs = new ReportDataSource(nomeDataSourceVendas, clientes);
             reportViewer1.LocalReport.DataSources.Add(clientesDs);
             this.reportViewer1.RefreshReport();

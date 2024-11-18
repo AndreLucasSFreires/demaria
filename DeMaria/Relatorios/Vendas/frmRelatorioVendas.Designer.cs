@@ -31,10 +31,14 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.VendaDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.VendaDtoBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // VendaDtoBindingSource
+            // 
+            this.VendaDtoBindingSource.DataSource = typeof(Aplicacao.DTO.VendaDto);
             // 
             // reportViewer1
             // 
@@ -52,10 +56,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(1152, 536);
             this.reportViewer1.TabIndex = 0;
             // 
-            // VendaDtoBindingSource
-            // 
-            this.VendaDtoBindingSource.DataSource = typeof(Aplicacao.DTO.VendaDto);
-            // 
             // frmRelatorioVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -63,7 +63,8 @@
             this.ClientSize = new System.Drawing.Size(1152, 536);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmRelatorioVendas";
-            this.Text = "frmRelatorioVendas";
+            this.Text = "Relatório de Vendas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmRelatorioVendas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.VendaDtoBindingSource)).EndInit();
             this.ResumeLayout(false);

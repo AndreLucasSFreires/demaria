@@ -33,6 +33,7 @@
             this.btnFormularioVendas = new System.Windows.Forms.Button();
             this.btnRelatorioVendas = new System.Windows.Forms.Button();
             this.btnRelatorioClientes = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFormularioClientes
@@ -49,9 +50,9 @@
             // btnFormularioProdutos
             // 
             this.btnFormularioProdutos.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFormularioProdutos.Location = new System.Drawing.Point(163, 12);
+            this.btnFormularioProdutos.Location = new System.Drawing.Point(144, 9);
             this.btnFormularioProdutos.Name = "btnFormularioProdutos";
-            this.btnFormularioProdutos.Size = new System.Drawing.Size(126, 104);
+            this.btnFormularioProdutos.Size = new System.Drawing.Size(126, 101);
             this.btnFormularioProdutos.TabIndex = 1;
             this.btnFormularioProdutos.Text = "Gerenciar &Produtos";
             this.btnFormularioProdutos.UseVisualStyleBackColor = true;
@@ -86,15 +87,27 @@
             this.btnRelatorioClientes.Name = "btnRelatorioClientes";
             this.btnRelatorioClientes.Size = new System.Drawing.Size(126, 98);
             this.btnRelatorioClientes.TabIndex = 4;
-            this.btnRelatorioClientes.Text = "Relatórios C&lientes";
+            this.btnRelatorioClientes.Text = "Relatório C&lientes";
             this.btnRelatorioClientes.UseVisualStyleBackColor = true;
             this.btnRelatorioClientes.Click += new System.EventHandler(this.btnRelatorioClientes_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(420, 126);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 98);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Relatório& Estoque";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 388);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRelatorioClientes);
             this.Controls.Add(this.btnRelatorioVendas);
             this.Controls.Add(this.btnFormularioVendas);
@@ -114,6 +127,7 @@
         private System.Windows.Forms.Button btnFormularioVendas;
         private System.Windows.Forms.Button btnRelatorioVendas;
         private System.Windows.Forms.Button btnRelatorioClientes;
+        private System.Windows.Forms.Button button1;
     }
 }
 

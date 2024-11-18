@@ -25,6 +25,12 @@ namespace DeMaria.Relatorios.Vendas
         {
             reportViewer1.LocalReport.DataSources.Clear();
             var vendas = _vendaService.ObterTodasAsVendas();
+
+            if (!vendas.Any())
+                MessageBox.Show("Não há nenhuma venda realizada",
+                    "Relatório de Vendas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             var dados = new List<DadosRelatorioVenda>();
 
             dsVendas ds = new dsVendas();

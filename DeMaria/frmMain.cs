@@ -5,6 +5,7 @@ using DeMaria.Formularios.Clientes;
 using DeMaria.Formularios.Produtos;
 using DeMaria.Formularios.Vendas;
 using DeMaria.Relatorios.Clientes;
+using DeMaria.Relatorios.Estoque;
 using DeMaria.Relatorios.Vendas;
 using Infraestrutura.Repositorios;
 
@@ -27,7 +28,7 @@ namespace DeMaria
         {
             var clienteService = ObterClienteService();
             var frmClientes = new frmCadastroCliente(clienteService);
-            frmClientes.ShowDialog();
+            frmClientes.Show();
         }
 
         private ClienteService ObterClienteService()
@@ -37,9 +38,14 @@ namespace DeMaria
 
         private void btnFormularioProdutos_Click(object sender, EventArgs e)
         {
-            var produtoService = new ProdutoService(ProdutoRepository);
+            var produtoService = ObterProdutoService();
             var frmProdutos = new frmCadastroProdutos(produtoService);
-            frmProdutos.ShowDialog();
+            frmProdutos.Show();
+        }
+
+        private ProdutoService ObterProdutoService()
+        {
+            return new ProdutoService(ProdutoRepository);
         }
 
         private void btnFormularioVendas_Click(object sender, EventArgs e)
@@ -48,7 +54,7 @@ namespace DeMaria
             var itemVendaService = new ItemVendaService(ItemVendaRepository);
 
             frmVenda frmVenda = new frmVenda(vendaService, itemVendaService);
-            frmVenda.ShowDialog();
+            frmVenda.Show();
         }
 
         private VendaService ObterVendaService()
@@ -62,13 +68,20 @@ namespace DeMaria
         {
             var vendaService = ObterVendaService();
             var relatorioVendas = new frmRelatorioVendas(vendaService);
-            relatorioVendas.ShowDialog();
+            relatorioVendas.Show();
         }
 
         private void btnRelatorioClientes_Click(object sender, EventArgs e)
         {
             var relatorioClientes = new frmRelatorioClientes(ObterClienteService());
-            relatorioClientes.ShowDialog();
+            relatorioClientes.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var produtoService = ObterProdutoService();
+            var relatorioEstoque = new frmRelatorioEstoque(produtoService);
+            relatorioEstoque.Show();
         }
     }
 }

@@ -99,6 +99,12 @@
     <Compile Include="Relatorios\Clientes\frmRelatorioClientes.Designer.cs">
       <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Relatorios\Estoque\frmRelatorioEstoque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios\Estoque\frmRelatorioEstoque.Designer.cs">
+      <DependentUpon>frmRelatorioEstoque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Relatorios\Vendas\dsVendas.cs">
       <DependentUpon>dsVendas.xsd</DependentUpon>
     </Compile>
@@ -139,6 +145,10 @@
       <DependentUpon>frmRelatorioClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Relatorios\Clientes\reportClientes.rdlc" />
+    <EmbeddedResource Include="Relatorios\Estoque\frmRelatorioEstoque.resx">
+      <DependentUpon>frmRelatorioEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Estoque\reportEstoque.rdlc" />
     <EmbeddedResource Include="Relatorios\Vendas\frmRelatorioVendas.resx">
       <DependentUpon>frmRelatorioVendas.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +156,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Aplicacao.DTO.ClienteDto.datasource" />
     <None Include="Properties\DataSources\Aplicacao.DTO.ItemVendaDto.datasource" />
+    <None Include="Properties\DataSources\Aplicacao.DTO.ProdutoDto.datasource" />
     <None Include="Properties\DataSources\Aplicacao.DTO.VendaDto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -204,5 +215,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

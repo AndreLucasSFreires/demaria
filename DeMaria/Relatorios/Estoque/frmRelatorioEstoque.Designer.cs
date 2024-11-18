@@ -1,6 +1,6 @@
-﻿namespace DeMaria.Relatorios.Clientes
+﻿namespace DeMaria.Relatorios.Estoque
 {
-    partial class frmRelatorioClientes
+    partial class frmRelatorioEstoque
     {
         /// <summary>
         /// Required designer variable.
@@ -30,39 +30,39 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.ClienteDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ProdutoDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            ((System.ComponentModel.ISupportInitialize)(this.ClienteDtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProdutoDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // ClienteDtoBindingSource
+            // ProdutoDtoBindingSource
             // 
-            this.ClienteDtoBindingSource.DataSource = typeof(Aplicacao.DTO.ClienteDto);
+            this.ProdutoDtoBindingSource.DataSource = typeof(Aplicacao.DTO.ProdutoDto);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "dsClientes";
-            reportDataSource1.Value = this.ClienteDtoBindingSource;
+            reportDataSource1.Name = "dsEstoque";
+            reportDataSource1.Value = this.ProdutoDtoBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "DeMaria.Relatorios.Clientes.reportClientes.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "DeMaria.Relatorios.Estoque.reportEstoque.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // frmRelatorioClientes
+            // frmRelatorioEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "frmRelatorioClientes";
-            this.Text = "Relatório de Clientes";
+            this.Name = "frmRelatorioEstoque";
+            this.Text = "Relatório de Produtos / Estoque";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmRelatorioClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ClienteDtoBindingSource)).EndInit();
+            this.Load += new System.EventHandler(this.frmRelatorioEstoque_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ProdutoDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -70,6 +70,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource ClienteDtoBindingSource;
+        private System.Windows.Forms.BindingSource ProdutoDtoBindingSource;
     }
 }
