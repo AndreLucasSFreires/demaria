@@ -50,10 +50,10 @@ namespace Aplicacao.Servicos
             }
         }
 
-        private static void Validar(VendaDto vendaDto)
+        private void Validar(VendaDto vendaDto)
         {
             var validacao = new ValidacaoVendaDto();
-            var resultadoValidacao = validacao.Validate(vendaDto);
+            resultadoValidacao = validacao.Validate(vendaDto);
         }
 
         public bool AtualizarVenda(VendaDto vendaDto)

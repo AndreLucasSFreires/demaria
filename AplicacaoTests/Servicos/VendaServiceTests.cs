@@ -18,8 +18,10 @@ namespace AplicacaoTests.Servicos
             var vendaService = mocker.CreateInstance<VendaService>();
             var vendaDto = DadosBogus.GerarVendaDtoInvalido();
 
-            Action acao = () => vendaService.InserirVenda(vendaDto);
-            acao.Should().Throw<Exception>();
+            var resultado = vendaService.InserirVenda(vendaDto);
+
+            resultado.Should().BeFalse();
+            
         }
         [Fact]
         public void InserirVendaDeveRetornarSucesso()
