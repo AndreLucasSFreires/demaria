@@ -1,11 +1,13 @@
 ﻿using Aplicacao.DTO;
+using Aplicacao.DTO.Clientes;
 using Dominio.Entidades;
 using Dominio.Entidades.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Aplicacao.Servicos
 {
-    public class ClienteService
+    public class ClienteService : ServicoBase
     {
         private readonly IClienteRepository _clienteRepository;
 
@@ -16,24 +18,54 @@ namespace Aplicacao.Servicos
 
         public bool InserirCliente(ClienteDto clienteDto)
         {
-            //realizar validações
-            var cliente = new Cliente(clienteDto.Nome, clienteDto.Telefone, clienteDto.Endereco, clienteDto.Email);
-            return _clienteRepository.Inserir(cliente);
+            Validar(clienteDto);
+
+            try
+            {
+                LancarExcecaoValidacao();
+                var cliente = new Cliente(clienteDto.Nome, clienteDto.Telefone, clienteDto.Endereco, clienteDto.Email);
+                return _clienteRepository.Inserir(cliente);
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString(); return false;
+            }
+        }
+
+        private void Validar(ClienteDto clienteDto)
+        {
+            var validacao = new ValidacaoClienteDto();
+            resultadoValidacao = validacao.Validate(clienteDto);
         }
 
         public bool AtualizarCliente(ClienteDto clienteDto)
         {
-            //realizar validações
-            var cliente = new Cliente(clienteDto.Nome, clienteDto.Telefone, clienteDto.Endereco, clienteDto.Email)
+            Validar(clienteDto);
+            try
             {
-                Id = clienteDto.Id
-            };
-            return _clienteRepository.Atualizar(cliente);
+                LancarExcecaoValidacao();
+                var cliente = new Cliente(clienteDto.Nome, clienteDto.Telefone, clienteDto.Endereco, clienteDto.Email)
+                {
+                    Id = clienteDto.Id
+                };
+                return _clienteRepository.Atualizar(cliente);
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString(); return false;
+            }
         }
 
         public bool Excluir(int id)
         {
-            return _clienteRepository.Excluir(id);
+            try
+            {
+                return _clienteRepository.Excluir(id);
+            }
+            catch (Exception e)
+            {
+                MensagemFalha = e.Message.ToString(); return false;
+            }
         }
 
         public List<ClienteDto> ObterTodos()

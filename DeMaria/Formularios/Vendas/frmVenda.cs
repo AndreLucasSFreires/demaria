@@ -145,7 +145,7 @@ namespace DeMaria.Formularios.Vendas
         private bool ExibirMensagemQuandoHouverFalha(string mensagemAdicional = "")
         {
             MessageBox.Show($"Houve falha, contate o suporte!\r\n\r\nExcecao: {mensagemAdicional}\r\n" +
-                        $"{_vendaService.MensagemFalha}", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        $"{_vendaService.ObterMensagemFalha()}", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return false;
         }
 
@@ -158,8 +158,15 @@ namespace DeMaria.Formularios.Vendas
                 {
                     foreach (var item in vendaAtual.ItensVenda)
                         _itemVendaService.InserirItemVenda(item);
+                    return true;
                 }
-                return true;
+                else
+                {
+                    MessageBox.Show($"Falha na inserção da Venda:\r\n\r\n" +
+                        $"{_vendaService.ObterMensagemFalha()}");
+                    return false;
+                }
+                
             }
             catch (Exception e)
             {
@@ -250,7 +257,7 @@ namespace DeMaria.Formularios.Vendas
                 return false;
             }
 
-            string nomeDescricao = $"{produtosSelecionado.Nome} // {produtosSelecionado.Descricao}";
+            string nomeDescricao = $@"{produtosSelecionado.Nome} | {produtosSelecionado.Descricao}";
             txtNomeProd.Text = nomeDescricao;
             txtCodProd.Text = produtosSelecionado.Id.ToString().PadLeft(5, '0');
             txtVUnit.Text = produtosSelecionado.Preco.ToString("N2");

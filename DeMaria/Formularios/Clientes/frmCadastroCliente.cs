@@ -133,7 +133,8 @@ namespace DeMaria.Formularios.Clientes
                     }
                     else
                     {
-                        MessageBox.Show("Cliente não foi inserido, contate o suporte!");
+                        MessageBox.Show("Cliente não foi inserido, contate o suporte!\r\n\r\n" +
+                            $"{_clienteService.ObterMensagemFalha()}");
                         return;
                     }
 
@@ -167,7 +168,8 @@ namespace DeMaria.Formularios.Clientes
                     }
                     else
                     {
-                        MessageBox.Show("Cliente não foi atualizado, contate o suporte!");
+                        MessageBox.Show("Cliente não foi atualizado, contate o suporte!\r\n\r\n" +
+                            $"{_clienteService.ObterMensagemFalha()}");
                         return;
                     }
 
@@ -196,7 +198,8 @@ namespace DeMaria.Formularios.Clientes
                     var excluido = _clienteService.Excluir(clienteSelecionado.Id);
                     if (!excluido)
                     {
-                        MessageBox.Show("Cliente não foi excluído, contate o suporte");
+                        MessageBox.Show("Cliente não foi excluido, contate o suporte!\r\n\r\n" +
+                            $"{_clienteService.ObterMensagemFalha()}");
                         return;
                     }
 

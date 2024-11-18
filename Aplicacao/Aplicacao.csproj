@@ -52,16 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\ClienteDto.cs" />
+    <Compile Include="DTO\Clientes\ClienteDto.cs" />
+    <Compile Include="DTO\Clientes\ValidacaoClienteDto.cs" />
     <Compile Include="DTO\ItemVendaDto.cs" />
-    <Compile Include="DTO\ProdutoDto.cs" />
-    <Compile Include="DTO\ValidacaoVendaDto.cs" />
-    <Compile Include="DTO\VendaDto.cs" />
+    <Compile Include="DTO\Produtos\ProdutoDto.cs" />
+    <Compile Include="DTO\Produtos\ValidacaoProdutoDto.cs" />
+    <Compile Include="DTO\Vendas\ValidacaoVendaDto.cs" />
+    <Compile Include="DTO\Vendas\VendaDto.cs" />
     <Compile Include="Mapeamento\Mappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\ClienteService.cs" />
     <Compile Include="Servicos\ItemVendaService.cs" />
     <Compile Include="Servicos\ProdutoService.cs" />
+    <Compile Include="Servicos\ServicoBase.cs" />
     <Compile Include="Servicos\VendaService.cs" />
   </ItemGroup>
   <ItemGroup>

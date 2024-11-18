@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Aplicacao.Servicos
 {
-    public class VendaService
+    public class VendaService : ServicoBase
     {
         private readonly IVendaRepository _vendaRepository;
         private readonly IClienteRepository _clienteRepository;
@@ -18,8 +18,6 @@ namespace Aplicacao.Servicos
         private readonly IItemVendaRepository _itemVendaRepository;
         readonly MapperConfiguration configAutomapper = Mappings.ConfigurarAutoMapper();
         IMapper mapper;
-
-        public string MensagemFalha { get; private set; } = string.Empty;
 
         public VendaService(IVendaRepository vendaRepository, IClienteRepository clienteRepository, IProdutoRepository produtoRepository, IItemVendaRepository itemVendaRepository)
         {
@@ -32,20 +30,10 @@ namespace Aplicacao.Servicos
 
         public bool InserirVenda(VendaDto vendaDto)
         {
-            var validacao = new ValidacaoVendaDto();
-            var resultadoValidacao = validacao.Validate(vendaDto);
-
-            string mensagensValidacao = string.Empty;
-            if (!resultadoValidacao.IsValid)
-            {
-                resultadoValidacao
-                    .Errors
-                    .Select(x => mensagensValidacao += $"{x.ErrorMessage}\r\n").ToList();
-                throw new Exception($"Falhas de validação:\r\n{mensagensValidacao}");
-            }
-
+            Validar(vendaDto);
             try
             {
+                LancarExcecaoValidacao();
                 var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
                 var venda = new Venda(vendaDto.Cliente.Id,
                     cliente,
@@ -62,10 +50,18 @@ namespace Aplicacao.Servicos
             }
         }
 
+        private static void Validar(VendaDto vendaDto)
+        {
+            var validacao = new ValidacaoVendaDto();
+            var resultadoValidacao = validacao.Validate(vendaDto);
+        }
+
         public bool AtualizarVenda(VendaDto vendaDto)
         {
+            Validar(vendaDto);
             try
             {
+                LancarExcecaoValidacao();
                 var cliente = mapper.Map<Cliente>(vendaDto.Cliente);
                 var venda = new Venda
                 (
